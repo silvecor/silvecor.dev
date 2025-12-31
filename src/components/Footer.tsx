@@ -7,7 +7,7 @@ export const Footer = () => {
     <footer className='flex items-center py-6'>
       <div className='flex flex-wrap justify-center text-sm text-muted-fg'>
         <span className='lt-md:mb-1'>
-          &copy; 2023-2025 hellolin
+          &copy; 2023-2026 hellolin
         </span>
         <Separator className='mx-2 hidden sm:block' orientation='vertical' size='sm' />
         <div className='block w-full sm:hidden' />
