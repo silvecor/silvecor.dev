@@ -12,11 +12,11 @@ export default defineConfig({
     }),
     presetIcons({
       extraProperties: {
-        'display': 'inline-block',
+        display: 'inline-block',
         'vertical-align': 'middle',
       },
       collections: {
-        'lucide': () => import('@iconify-json/lucide/icons.json').then(i => i.default),
+        lucide: () => import('@iconify-json/lucide/icons.json').then(i => i.default),
         'simple-icons': () => import('@iconify-json/simple-icons/icons.json').then(i => i.default) as any,
       },
     }),

@@ -76,10 +76,8 @@ export const Toc = ({ toc }: TocProps) => {
       const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
       const currentScroll = window.scrollY;
       if (scrollableHeight === 0) {
-        // eslint-disable-next-line react-hooks-extra/no-direct-set-state-in-use-effect
         setReadingProgress(0);
       } else {
-        // eslint-disable-next-line react-hooks-extra/no-direct-set-state-in-use-effect
         setReadingProgress(Math.min(100, Math.round((currentScroll / scrollableHeight) * 100)));
       }
     };
@@ -97,20 +95,20 @@ export const Toc = ({ toc }: TocProps) => {
       requestAnimationFrame(() => {
         let activeItem = null as HTMLLIElement | null;
 
-        tocItemsRef.current.forEach(([item, target], index) => {
+        for (const [index, [item, target]] of tocItemsRef.current.entries()) {
           const targetBounds = target.getBoundingClientRect();
           const nextTargetBounds = tocItemsRef.current[index + 1]?.[1].getBoundingClientRect() as DOMRect | undefined;
 
           const targetBottom = nextTargetBounds ? nextTargetBounds.top : document.documentElement.scrollHeight;
           if (targetBottom > TOC_EPS && targetBounds.top <= window.innerHeight - TOC_EPS) {
-            item.setAttribute('data-current', 'true');
+            item.dataset.current = 'true';
             if (!activeItem) {
               activeItem = item;
             }
           } else {
-            item.removeAttribute('data-current');
+            delete item.dataset.current;
           }
-        });
+        }
 
         if (activeItem) {
           const navBounds = navRef.current!.getBoundingClientRect();

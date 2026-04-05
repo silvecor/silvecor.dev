@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: 'Homepage',
 };
 
-export default async function Home() {
+const Home = async () => {
   const recentPosts = await getRecentPosts();
 
   return (
@@ -46,4 +46,5 @@ export default async function Home() {
       </section>
     </div>
   );
-}
+};
+export default Home;

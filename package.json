@@ -2,7 +2,7 @@
   "name": "hellolin.top",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@10.26.1",
+  "packageManager": "pnpm@10.33.0",
   "license": "AGPL-3.0-only",
   "scripts": {
     "prepare": "husky",
@@ -35,9 +35,7 @@
     "@expressive-code/plugin-collapsible-sections": "catalog:frontend",
     "@expressive-code/plugin-line-numbers": "catalog:frontend",
     "@hellolin-eslint/config": "catalog:dev",
-    "@hellolin-eslint/node-config": "catalog:dev",
     "@hellolin-eslint/react-config": "catalog:dev",
-    "@hellolin-eslint/unocss-config": "catalog:dev",
     "@iconify-json/lucide": "catalog:frontend",
     "@iconify-json/simple-icons": "catalog:frontend",
     "@types/node": "catalog:types",

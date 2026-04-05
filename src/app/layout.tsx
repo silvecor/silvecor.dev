@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   // https://nextjs.org/docs/app/api-reference/functions/generate-metadata#default-fields
   return (
     <html lang='en' suppressHydrationWarning>
@@ -80,4 +80,5 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </body>
     </html>
   );
-}
+};
+export default Layout;

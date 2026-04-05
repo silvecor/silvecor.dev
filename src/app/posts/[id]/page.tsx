@@ -67,11 +67,11 @@ export const generateMetadata = async ({
   };
 };
 
-export default async function Post({
+const Post = async ({
   params,
 }: {
   params: Promise<{ id: string }>;
-}) {
+}) => {
   const { id } = await params;
   const post = await getPostById(id);
   const { previous, next } = await getAdjacentPosts(id);
@@ -128,4 +128,5 @@ export default async function Post({
       <PostPagination previous={previous} next={next} />
     </div>
   );
-}
+};
+export default Post;

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Not Found',
 };
 
-export default function NotFound() {
+const NotFound = () => {
   return (
     <section className='flex flex-col items-center justify-center gap-8'>
       <div className='text-center'>
@@ -22,4 +22,5 @@ export default function NotFound() {
       </Button>
     </section>
   );
-}
+};
+export default NotFound;

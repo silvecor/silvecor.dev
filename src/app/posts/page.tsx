@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   title: 'Posts',
 };
 
-export default async function Posts({
+const Posts = async ({
   searchParams,
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-}) {
-  const page = (await searchParams).page ? parseInt((await searchParams).page as string) : 1;
+}) => {
+  const page = (await searchParams).page ? Number.parseInt((await searchParams).page as string) : 1;
 
   const posts = await getAllPosts();
   const postsToShow = posts.slice((page - 1) * 5, page * 5);
@@ -31,4 +31,5 @@ export default async function Posts({
       />
     </div>
   );
-}
+};
+export default Posts;
