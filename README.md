@@ -1,22 +1,19 @@
-This project stores the source code of [hellolin.top](https://hellolin.top/), my personal website.
+# silvecor.dev
 
-## Installation
+This project stores the source code of [silvecor.dev](https://silvecor.dev/).
 
-Make sure you have Node.js and pnpm installed.
+Since it's a personal website, pirating (re-publishing, re-distributing) its content, branding, or visual identity is strictly prohibited.
+
+That said, the code is licensed under an open source license (see below), thus you are free to use it under the restrictions of the license.
+
+## Usage
 
 ``` shell
-$ git clone https://github.com/VLTHellolin/hellolin.top.git --depth 1
-$ cd hellolin.top
 $ pnpm install
-$ pnpm build
-$ pnpm start
+$ pnpm run preview
 ```
 
 The project is now running on port 5173.
-
-## Acknowledgements
-
-This project is inspired by [jktrn/astro-erudite](https://github.com/jktrn/astro-erudite), [antfu/antfu.me](https://github.com/antfu/antfu.me), [fuma-nama/fumadocs](https://github.com/fuma-nama/fumadocs), and [squidfunk/mkdocs-material](https://github.com/squidfunk/mkdocs-material).
 
 ## License
 
@@ -24,4 +21,4 @@ This project is inspired by [jktrn/astro-erudite](https://github.com/jktrn/astro
 
 Released under the [GNU Affero General Public License](./LICENSE) (for the code), and [CC BY-NC-ND 4.0](./LICENSE_CONTENT) (for articles and images).
 
-Copyright © 2025 [hellolin](https://hellolin.top). All rights reserved.
+Copyright © 2026 [silvecor](https://silvecor.dev). All rights reserved.
