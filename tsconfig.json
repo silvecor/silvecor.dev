@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
     "incremental": true,
-    "target": "ES2022",
-    "jsx": "preserve",
+    "target": "ES2025",
+    "jsx": "react-jsx",
     "lib": [
-      "ES2022",
+      "ES2025",
       "DOM",
       "DOM.Iterable"
     ],
@@ -15,34 +15,30 @@
     "paths": {
       "@/*": [
         "./src/*"
-      ],
-      "@content/*": [
-        "./.velite/*"
       ]
     },
     "resolveJsonModule": true,
+    "types": [
+      "./worker-configuration.d.ts",
+      "node"
+    ],
     "allowImportingTsExtensions": true,
-    "allowJs": true,
     "strict": true,
+    "exactOptionalPropertyTypes": true,
     "noFallthroughCasesInSwitch": true,
     "noPropertyAccessFromIndexSignature": false,
+    "noUncheckedIndexedAccess": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noEmit": true,
     "esModuleInterop": true,
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
-    "skipLibCheck": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
+    "skipLibCheck": true
   },
   "include": [
     "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
+    "**/*.tsx"
   ],
   "exclude": [
     "dist",

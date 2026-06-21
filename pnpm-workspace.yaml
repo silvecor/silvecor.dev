@@ -1,5 +1,7 @@
+minimumReleaseAge: 0
 allowBuilds:
-  esbuild: set this to true or false
+  esbuild: true
   lefthook: true
-  sharp: set this to true or false
-  workerd: set this to true or false
+  sharp: true
+  workerd: true
+

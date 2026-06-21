@@ -1,9 +1,8 @@
-import { defineConfig, presetIcons, presetWind3 } from 'unocss';
-import { presetStyles } from './src/styles';
+import { defineConfig, presetIcons, presetWind4 } from 'unocss';
 
 export default defineConfig({
   presets: [
-    presetWind3({
+    presetWind4({
       dark: {
         light: '[data-theme="light"]',
         dark: '[data-theme="dark"]',
@@ -16,11 +15,9 @@ export default defineConfig({
         'vertical-align': 'middle',
       },
       collections: {
-        lucide: () => import('@iconify-json/lucide/icons.json').then(i => i.default),
-        'simple-icons': () => import('@iconify-json/simple-icons/icons.json').then(i => i.default) as any,
+        ph: () => import('@iconify-json/ph/icons.json').then(i => i.default),
       },
     }),
-    presetStyles(),
   ],
   content: {
     pipeline: {

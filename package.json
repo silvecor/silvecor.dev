@@ -5,16 +5,27 @@
   "packageManager": "pnpm@11.8.0",
   "license": "AGPL-3.0-only",
   "scripts": {
-    "build": "react-router build",
-    "dev": "react-router dev",
+    "build": "waku build",
+    "dev": "waku dev",
     "deploy": "pnpm run build && wrangler deploy",
-    "preview": "pnpm run build && vite preview",
+    "preview": "NODE_ENV=production pnpm run build && wrangler dev",
     "typegen": "pnpm run \"/^typegen:.*/\"",
-    "typegen:react-router": "react-router typegen",
+    "typegen:react-router": "waku router typegen",
     "typegen:cf": "wrangler types",
     "typecheck": "pnpm run typegen && tsc -b",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "animejs": "^4.4.1",
+    "base-ui": "^0.0.294",
+    "fumadocs-core": "^16.10.5",
+    "fumadocs-mdx": "^15.0.12",
+    "hono": "^4.12.26",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-server-dom-webpack": "^19.2.7",
+    "waku": "1.0.0-beta.3"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.42.1",
@@ -25,6 +36,7 @@
     "@types/node": "^26.0.0",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.2",
     "commitlint": "^21.0.2",
     "eslint": "^10.5.0",
     "eslint-config-silvecor": "^0.1.0",
@@ -36,11 +48,5 @@
     "unocss": "^66.7.2",
     "vite": "^8.0.16",
     "wrangler": "^4.103.0"
-  },
-  "dependencies": {
-    "isbot": "^5.1.43",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
-    "react-router": "^8.0.1"
   }
 }
