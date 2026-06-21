@@ -1,12 +1,17 @@
 import { cloudflare } from '@cloudflare/vite-plugin';
 import react from '@vitejs/plugin-react';
+import mdx from 'fumadocs-mdx/vite';
 import unocss from 'unocss/vite';
 import { defineConfig } from 'waku/config';
 
 export default defineConfig({
   vite: {
+    resolve: {
+      tsconfigPaths: true,
+    },
     plugins: [
       unocss(),
+      mdx(),
       react(),
       cloudflare({
         viteEnvironment: {

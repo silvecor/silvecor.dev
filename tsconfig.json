@@ -15,6 +15,9 @@
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "collections/*": [
+        "./.source/*"
       ]
     },
     "resolveJsonModule": true,
