@@ -21,6 +21,9 @@ export default defineConfig({
         inspectorPort: false,
       }),
     ],
+    ssr: {
+      external: ['@takumi-rs/image-response'],
+    },
     environments: {
       rsc: {
         optimizeDeps: {

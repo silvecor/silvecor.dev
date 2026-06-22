@@ -1,0 +1,41 @@
+body {
+  height: 100vh;
+  background: var(--gray-1);
+  color: var(--gray-12);
+  scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.light {
+  color-scheme: light;
+}
+.dark {
+  color-scheme: dark;
+}
+
+::selection,
+::-moz-selection {
+  background: var(--gray-a5);
+}
+
+* {
+  letter-spacing: -0.005em;
+  -webkit-tap-highlight-color: transparent;
+}
+
+p {
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}

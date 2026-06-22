@@ -1,5 +1,3 @@
-@import './css/theme.css';
-@import './css/base.css';
-@import './css/components/prose.css';
-
-@unocss;
+@import './base.css' layer(base);
+@import './colors.css' layer(theme);
+@import './fonts.css' layer(theme);

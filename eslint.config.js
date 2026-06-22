@@ -7,7 +7,11 @@ export default silvecor({
   },
   typescript: true,
   react: {
-    framework: 'reactRouter',
+    framework: 'vite',
+    reactFastRefresh: {
+      allowConstantExport: true,
+      allowExportNames: ['getConfig'],
+    },
     rsc: true,
   },
   format: true,

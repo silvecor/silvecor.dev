@@ -1,0 +1,8 @@
+/* IBM Plex Sans, Noto Sans JP, Noto Sans SC, Geist Mono */
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:ital,wght@0,100..900;1,100..900&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+SC:wght@100..900&display=swap');
+
+:root {
+  --font-emoji-fallback: 'Apple Color Emoji', 'Noto Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --font-sans: 'IBM Plex Sans', 'Noto Sans JP', 'Noto Sans SC', -apple-system, ui-sans-serif, system-ui, sans-serif, var(--font-emoji-fallback);
+  --font-mono: 'Geist Mono', ui-monospace, monospace, Menlo, SFMono, Consolas, var(--font-emoji-fallback);
+}
