@@ -1,17 +1,11 @@
 '$schema' = './node_modules/wrangler/config-schema.json'
 name = 'silvecor-dev'
-main = './src/waku.server'
 compatibility_date = '2026-06-21'
-compatibility_flags = [
-  'nodejs_compat',
-  'nodejs_als',
-]
 
 no_bundle = true
 upload_source_maps = true
 
 [assets]
-binding = 'ASSETS'
 directory = './dist/public'
 html_handling = 'drop-trailing-slash'
 

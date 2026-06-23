@@ -1,15 +1,12 @@
-import { defineConfig, presetIcons, presetWind4 } from 'unocss';
+import { defineConfig, presetIcons, presetWind3 } from 'unocss';
 
 const radixColors = ['gray', 'blue', 'red', 'orange', 'green', 'teal', 'purple'];
 
 export default defineConfig({
   presets: [
-    presetWind4({
+    presetWind3({
       dark: 'class',
-      preflights: {
-        reset: true,
-        theme: 'on-demand',
-      },
+      preflights: true,
     }),
     presetIcons({
       extraProperties: {
@@ -24,12 +21,13 @@ export default defineConfig({
   content: {
     pipeline: {
       include: [
-        /\.([jt]sx?|mdx?|html)($|\?)/,
+        /\.(tsx?|mdx?|html)($|\?)/,
+      ],
+      exclude: [
+        /node_modules/,
+        /dist/,
       ],
     },
-    filesystem: [
-      '**/*.{html,md,mdx,js,ts,jsx,tsx}',
-    ],
   },
   rules: [
     ['scrollbar-none', { 'scrollbar-width': 'none', '-ms-overflow-style': 'none' }],

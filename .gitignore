@@ -8,4 +8,5 @@ public/static
 .env*
 *.tsbuildinfo
 .wrangler
+pages.gen.ts
 worker-configuration.d.ts

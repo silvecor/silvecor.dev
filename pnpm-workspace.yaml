@@ -1,7 +1,8 @@
 minimumReleaseAge: 0
+trustPolicy: no-downgrade
+
 allowBuilds:
   esbuild: true
   lefthook: true
   sharp: true
   workerd: true
-

@@ -1,4 +1,3 @@
-import { cloudflare } from '@cloudflare/vite-plugin';
 import react from '@vitejs/plugin-react';
 import mdx from 'fumadocs-mdx/vite';
 import unocss from 'unocss/vite';
@@ -6,45 +5,23 @@ import { defineConfig } from 'waku/config';
 
 export default defineConfig({
   vite: {
+    server: {
+      port: 5173,
+    },
+    css: {
+      modules: {
+        localsConvention: 'camelCaseOnly',
+      },
+    },
     resolve: {
       tsconfigPaths: true,
+      external: ['@takumi-rs/image-response'],
+      dedupe: ['waku'],
     },
     plugins: [
-      unocss(),
       mdx(),
       react(),
-      cloudflare({
-        viteEnvironment: {
-          name: 'rsc',
-          childEnvironments: ['ssr'],
-        },
-        inspectorPort: false,
-      }),
+      unocss(),
     ],
-    ssr: {
-      external: ['@takumi-rs/image-response'],
-    },
-    environments: {
-      rsc: {
-        optimizeDeps: {
-          include: ['hono/tiny'],
-        },
-        build: {
-          rolldownOptions: {
-            platform: 'neutral',
-          },
-        },
-      },
-      ssr: {
-        optimizeDeps: {
-          include: ['waku > rsc-html-stream/server'],
-        },
-        build: {
-          rolldownOptions: {
-            platform: 'neutral',
-          },
-        },
-      },
-    },
   },
 });
