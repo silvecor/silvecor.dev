@@ -1,4 +1,12 @@
+import rehypeMathML from '@daiji256/rehype-mathml';
+import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections';
+import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers';
+import { remarkGfm, remarkHeading } from 'fumadocs-core/mdx-plugins';
 import { defineCollections } from 'fumadocs-mdx/config';
+import rehypeExpressiveCode, { type RehypeExpressiveCodeOptions } from 'rehype-expressive-code';
+import rehypeExternalLinks, { type Options as RehypeExternalLinksOptions } from 'rehype-external-links';
+import remarkDirective from 'remark-directive';
+import remarkMath from 'remark-math';
 import { z } from 'zod';
 
 export const blog = defineCollections({
@@ -13,6 +21,34 @@ export const blog = defineCollections({
     tags: z.array(z.string()).optional(),
     authors: z.array(z.string()),
   }),
+  mdxOptions: {
+    format: 'md',
+    remarkPlugins: [
+      remarkGfm,
+      remarkHeading,
+      remarkMath,
+      remarkDirective,
+    ],
+    rehypePlugins: [
+      rehypeMathML,
+      [
+        rehypeExternalLinks,
+        {
+          target: '_blank',
+          rel: ['nofollow', 'noopener', 'noreferrer'],
+        } satisfies RehypeExternalLinksOptions,
+      ],
+      [
+        rehypeExpressiveCode,
+        {
+          // TODO
+          themes: ['ayu-light', 'kanagawa-dragon'],
+          plugins: [pluginCollapsibleSections(), pluginLineNumbers()],
+          useDarkModeMediaQuery: false,
+        } satisfies RehypeExpressiveCodeOptions,
+      ],
+    ],
+  },
 });
 
 export const authors = defineCollections({

@@ -1,3 +1,5 @@
+import { themeScript } from '@/lib/theme';
+
 export default async function Root({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en'>
@@ -15,6 +17,8 @@ export default async function Root({ children }: { children: React.ReactNode }) 
         <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
         <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='anonymous' />
+        {/* eslint-disable-next-line react/dom-no-dangerously-set-innerhtml */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body>
         {children}
