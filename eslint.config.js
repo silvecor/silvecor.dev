@@ -1,12 +1,18 @@
-import defineConfig from '@hellolin-eslint/config';
+import silvecor from 'eslint-config-silvecor';
 
-export default defineConfig({
+export default silvecor({
   env: {
     browser: true,
     node: true,
   },
+  typescript: true,
   react: {
-    next: true,
-    reactCompiler: true,
+    framework: 'vite',
+    reactFastRefresh: {
+      allowConstantExport: true,
+      allowExportNames: ['getConfig'],
+    },
+    rsc: true,
   },
+  format: true,
 });

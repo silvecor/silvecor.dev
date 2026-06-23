@@ -1,14 +1,12 @@
 import { defineConfig, presetIcons, presetWind3 } from 'unocss';
-import { presetStyles } from './src/styles';
+
+const radixColors = ['gray', 'blue', 'red', 'orange', 'green', 'teal', 'purple'];
 
 export default defineConfig({
   presets: [
     presetWind3({
-      dark: {
-        light: '[data-theme="light"]',
-        dark: '[data-theme="dark"]',
-      },
-      preflight: 'on-demand',
+      dark: 'class',
+      preflights: true,
     }),
     presetIcons({
       extraProperties: {
@@ -16,20 +14,39 @@ export default defineConfig({
         'vertical-align': 'middle',
       },
       collections: {
-        lucide: () => import('@iconify-json/lucide/icons.json').then(i => i.default),
-        'simple-icons': () => import('@iconify-json/simple-icons/icons.json').then(i => i.default) as any,
+        ph: () => import('@iconify-json/ph/icons.json').then(i => i.default),
       },
     }),
-    presetStyles(),
   ],
   content: {
     pipeline: {
       include: [
-        /\.([jt]sx?|mdx?|html|css)($|\?)/,
+        /\.(tsx?|mdx?|html)($|\?)/,
+      ],
+      exclude: [
+        /node_modules/,
+        /dist/,
       ],
     },
-    filesystem: [
-      '**/*.{html,md,mdx,js,ts,jsx,tsx,css}',
-    ],
+  },
+  rules: [
+    ['scrollbar-none', { 'scrollbar-width': 'none', '-ms-overflow-style': 'none' }],
+  ],
+  extendTheme: theme => {
+    const colors = radixColors.reduce<Record<string, string>>((acc, color) => {
+      for (let i = 1; i <= 12; ++i) {
+        acc[`${color}-${i}`] = `var(--${color}-${i})`;
+      }
+      return acc;
+    }, {});
+
+    return {
+      ...theme,
+      colors,
+      fontFamily: {
+        sans: 'var(--font-sans)',
+        mono: 'var(--font-mono)',
+      },
+    };
   },
 });
