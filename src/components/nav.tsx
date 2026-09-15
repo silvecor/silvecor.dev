@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import { Link } from 'waku';
 import s from './nav.module.css';
+import Search from './search';
 import ThemeButton from './theme-button';
 
 const navList = [
@@ -30,6 +31,8 @@ export default async function Nav() {
       <div className={s.contentSeparator} />
 
       <div className={s.navbar}>
+        <div className={s.navbarSeparator} />
+        <Search className={s.navbarButton} />
         <div className={s.navbarSeparator} />
         <ThemeButton className={s.navbarButton} />
         <div className={s.navbarSeparator} />

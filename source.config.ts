@@ -1,8 +1,8 @@
 import rehypeMathML from '@daiji256/rehype-mathml';
 import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections';
 import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers';
-import { remarkGfm, remarkHeading } from 'fumadocs-core/mdx-plugins';
-import { defineCollections } from 'fumadocs-mdx/config';
+import { remarkGfm } from 'fumadocs-core/mdx-plugins';
+import { applyMdxPreset, defineCollections } from 'fumadocs-mdx/config';
 import rehypeExpressiveCode, { type RehypeExpressiveCodeOptions } from 'rehype-expressive-code';
 import rehypeExternalLinks, { type Options as RehypeExternalLinksOptions } from 'rehype-external-links';
 import remarkDirective from 'remark-directive';
@@ -14,22 +14,22 @@ export const blog = defineCollections({
   dir: './content/posts',
   schema: z.object({
     title: z.string(),
-    date: z.date(),
+    date: z.iso.date(),
     description: z.string(),
     image: z.string().optional(),
     order: z.number().optional(),
     tags: z.array(z.string()).optional(),
     authors: z.array(z.string()),
   }),
-  mdxOptions: {
+  mdxOptions: applyMdxPreset({
     format: 'md',
-    remarkPlugins: [
+    remarkPlugins: v => [
       remarkGfm,
-      remarkHeading,
       remarkMath,
       remarkDirective,
+      ...v,
     ],
-    rehypePlugins: [
+    rehypePlugins: v => [
       rehypeMathML,
       [
         rehypeExternalLinks,
@@ -47,8 +47,9 @@ export const blog = defineCollections({
           useDarkModeMediaQuery: false,
         } satisfies RehypeExpressiveCodeOptions,
       ],
+      ...v,
     ],
-  },
+  }),
 });
 
 export const authors = defineCollections({

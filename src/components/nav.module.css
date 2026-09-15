@@ -23,7 +23,7 @@
     transition: color 0.2s;
     color: var(--gray-11);
   }
-  &:hover span {
+  &:is(:hover, :focus) span {
     color: var(--blue-11);
   }
 }
@@ -41,7 +41,7 @@
     color 0.2s,
     background-color 0.2s;
   color: var(--gray-11);
-  &:hover {
+  &:is(:hover, :focus) {
     background-color: var(--gray-12);
     color: var(--gray-4);
   }

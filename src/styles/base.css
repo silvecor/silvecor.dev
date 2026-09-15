@@ -1,4 +1,5 @@
 body {
+  position: relative;
   height: 100vh;
   font-family: var(--font-sans);
   background: var(--gray-1);

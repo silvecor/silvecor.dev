@@ -21,16 +21,16 @@
 
   /* Blur */
   --blur-xs: 1px;
-  --blur-sm: 4px;
-  --blur-md: 10px;
-  --blur-lg: 16px;
+  --blur-s: 4px;
+  --blur-m: 10px;
+  --blur-l: 16px;
   --blur-xl: 24px;
 
   /* Radius */
   --radius-xs: 0.125rem;
-  --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 1rem;
+  --radius-s: 0.25rem;
+  --radius-m: 0.5rem;
+  --radius-l: 1rem;
   --radius-xl: 1.5rem;
 
   /* Letter spacing */

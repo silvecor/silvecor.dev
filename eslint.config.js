@@ -15,4 +15,8 @@ export default silvecor({
     rsc: true,
   },
   format: true,
+}).override('silvecor/react', {
+  rules: {
+    'react/exhaustive-deps': ['warn'],
+  },
 });

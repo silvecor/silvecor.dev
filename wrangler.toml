@@ -1,8 +1,8 @@
 '$schema' = './node_modules/wrangler/config-schema.json'
 name = 'silvecor-dev'
-compatibility_date = '2026-06-21'
+main = './src/waku.server'
+compatibility_date = '2026-09-14'
 
-no_bundle = true
 upload_source_maps = true
 
 [assets]
@@ -11,10 +11,3 @@ html_handling = 'drop-trailing-slash'
 
 [observability]
 enabled = true
-
-[[rules]]
-type = 'ESModule'
-globs = [
-  '**/*.js',
-  '**/*.mjs',
-]

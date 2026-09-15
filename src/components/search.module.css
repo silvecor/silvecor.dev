@@ -1,0 +1,103 @@
+.button {
+  user-select: none;
+  cursor: pointer;
+}
+
+.backdrop {
+  inset: 0;
+  position: fixed;
+  min-height: 100vh;
+  transition:
+    background-color 0.2s,
+    backdrop-filter 0.2s;
+  background-color: var(--gray-a1);
+  backdrop-filter: blur(var(--blur-s));
+
+  &[data-starting-style],
+  &[data-ending-style] {
+    background-color: transparent;
+    backdrop-filter: none;
+  }
+}
+.viewport {
+  inset: 0;
+  position: fixed;
+  display: flex;
+  padding-inline: var(--space-s);
+  justify-content: center;
+  align-items: baseline;
+}
+.popup {
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  margin-block-start: var(--space-3xl);
+  width: min(35rem, calc(0.75 * var(--grid-max-width)));
+  box-shadow: 0 0 0 1px var(--gray-6);
+  background-color: var(--gray-1);
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
+  opacity: 1;
+  &[data-starting-style],
+  &[data-ending-style] {
+    opacity: 0;
+    transform: translateY(-0.25rem);
+  }
+  & > section:not(:last-child) {
+    border-bottom: 1px solid var(--gray-6);
+  }
+}
+.popup-search {
+  display: flex;
+  padding: var(--space-xs) var(--space-s);
+  align-items: center;
+  gap: var(--space-2xs);
+  color: var(--gray-11);
+  font-size: var(--step-0);
+}
+.popup-input {
+  box-sizing: border-box;
+  flex-grow: 1;
+  background: transparent;
+  &:focus-visible {
+    outline: none;
+  }
+  &::-webkit-search-cancel-button {
+    display: none;
+  }
+}
+
+.popup-result {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0;
+  font-size: var(--step--1);
+  padding-block: var(--space-2xs);
+  max-height: 50vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.status {
+  color: var(--gray-11);
+  padding: var(--space-2xs) var(--space-s);
+}
+.result-item {
+  padding: var(--space-2xs) var(--space-s);
+  transition: background-color 0.2s;
+  background-color: transparent;
+  text-wrap-style: pretty;
+  &:hover {
+    background-color: var(--gray-4);
+  }
+  &.page {
+  }
+  &.heading {
+  }
+  &.text {
+    .target {
+      color: var(--blue-11);
+      text-decoration: underline var(--blue-6) solid 1px;
+    }
+  }
+}

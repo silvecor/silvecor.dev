@@ -1,3 +1,4 @@
+import { cloudflare } from '@cloudflare/vite-plugin';
 import react from '@vitejs/plugin-react';
 import mdx from 'fumadocs-mdx/vite';
 import icons from 'unplugin-icons/vite';
@@ -15,8 +16,29 @@ export default defineConfig({
     },
     resolve: {
       tsconfigPaths: true,
-      external: ['@takumi-rs/image-response'],
       dedupe: ['waku'],
+    },
+    environments: {
+      rsc: {
+        optimizeDeps: {
+          include: ['hono/tiny'],
+        },
+        build: {
+          rolldownOptions: {
+            platform: 'neutral',
+          },
+        },
+      },
+      ssr: {
+        optimizeDeps: {
+          include: ['waku > rsc-html-stream/server'],
+        },
+        build: {
+          rolldownOptions: {
+            platform: 'neutral',
+          },
+        },
+      },
     },
     plugins: [
       mdx(),
@@ -24,6 +46,10 @@ export default defineConfig({
       icons({
         compiler: 'jsx',
         jsx: 'react',
+      }),
+      cloudflare({
+        viteEnvironment: { name: 'rsc', childEnvironments: ['ssr'] },
+        inspectorPort: false,
       }),
     ],
   },

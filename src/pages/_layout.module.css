@@ -1,4 +1,5 @@
 .container {
+  isolation: isolate;
   min-height: 100vh;
   height: fit-content;
   display: flex;
@@ -14,7 +15,7 @@
   top: 0;
   height: var(--header-height);
   background-color: var(--gray-a1);
-  backdrop-filter: blur(var(--blur-lg)) saturate(180%);
+  backdrop-filter: blur(var(--blur-l)) saturate(180%);
   box-shadow: 0 0 0 1px var(--gray-6);
   @media not (--screen-lg) {
     padding-inline: var(--grid-gutter);
