@@ -1,0 +1,7 @@
+.link {
+  transition: text-decoration-color 0.2s;
+  text-decoration: underline var(--gray-7) solid 1px;
+  &:hover {
+    text-decoration-color: var(--gray-8);
+  }
+}

@@ -49,7 +49,7 @@ function ResultList({ items }: { items?: Result[] | undefined }) {
   );
 }
 
-export default function Search({ className }: { className?: string }) {
+export function Search({ className }: { className?: string }) {
   const { query, setSearch } = useDocsSearch({
     delayMs: 800,
     client: fetchClient(),

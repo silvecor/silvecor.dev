@@ -1,4 +1,5 @@
-import Nav from '@/components/nav';
+import { Footer } from '@/components/footer';
+import { Nav } from '@/components/nav';
 import { ThemeProvider } from '@/components/theme-provider';
 import s from './_layout.module.css';
 
@@ -13,7 +14,9 @@ export default async function Layout({ children }: { children: React.ReactNode }
           <div className={s.mainContent}>
             {children}
           </div>
-          <footer className={s.footer} />
+          <footer className={s.footer}>
+            <Footer />
+          </footer>
         </main>
       </div>
     </ThemeProvider>

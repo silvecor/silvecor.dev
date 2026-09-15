@@ -7,7 +7,7 @@ import Sun from '~icons/ph/sun';
 import { useTheme } from '@/lib/theme';
 import s from './theme-button.module.css';
 
-export default function ThemeButton({ className }: { className?: string }) {
+export function ThemeButton({ className }: { className?: string }) {
   const { resolvedTheme, setTheme } = useTheme();
 
   return (

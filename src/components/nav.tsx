@@ -1,8 +1,8 @@
 import { Fragment } from 'react';
 import { Link } from 'waku';
 import s from './nav.module.css';
-import Search from './search';
-import ThemeButton from './theme-button';
+import { Search } from './search';
+import { ThemeButton } from './theme-button';
 
 const navList = [
   { text: 'Home', href: '/' },
@@ -10,7 +10,7 @@ const navList = [
   { text: 'Projects', href: '/projects' },
 ];
 
-export default async function Nav() {
+export function Nav() {
   return (
     <div className={s.content}>
       <nav className={s.navbar}>

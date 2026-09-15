@@ -17,7 +17,7 @@
   background-color: var(--gray-a1);
   backdrop-filter: blur(var(--blur-l)) saturate(180%);
   box-shadow: 0 0 0 1px var(--gray-6);
-  @media not (--screen-lg) {
+  @media not (--screen-xl) {
     padding-inline: var(--grid-gutter);
   }
 }
@@ -41,13 +41,28 @@
 .main {
   position: relative;
   flex-grow: 1;
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: var(--grid-gutter);
+}
+.main-content {
+  position: relative;
+  flex-grow: 1;
   max-width: var(--grid-max-width);
   width: 100%;
   margin: 0 auto;
-  display: grid;
-  grid-template: auto 1fr / 1fr;
-  gap: var(--grid-gutter);
-  @media not (--screen-lg) {
+  @media not (--screen-xl) {
+    padding-inline: var(--grid-gutter);
+  }
+}
+
+.footer {
+  position: relative;
+  border-top: 1px solid var(--gray-6);
+  width: 100%;
+  padding-block: var(--space-2xs) var(--space-m);
+  @media not (--screen-xl) {
     padding-inline: var(--grid-gutter);
   }
 }
