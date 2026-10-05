@@ -1,0 +1,92 @@
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  padding-top: var(--space-s);
+  gap: var(--space-s-m);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr max-content;
+  row-gap: var(--space-xs);
+}
+
+.intro {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  font-weight: 300;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: var(--space-3xs);
+}
+.name {
+  font-size: var(--step-4);
+  line-height: 0.75;
+}
+.handle {
+  font-size: var(--step--1);
+  color: var(--gray-11);
+}
+.tagline {
+  font-size: var(--step-0);
+}
+
+.actions-container {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  position: relative;
+}
+.actions {
+  display: grid;
+  width: fit-content;
+  grid-template-columns: repeat(3, var(--space-l-xl) 1px) var(--space-l-xl);
+  grid-template-rows: var(--space-l-xl);
+  box-shadow: 0 0 0 1px var(--gray-6);
+}
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+  &:is(:hover, :focus) {
+    background-color: var(--gray-12);
+    color: var(--gray-4);
+  }
+  svg {
+    width: 40%;
+    height: 40%;
+  }
+}
+.action-separator {
+  background-color: var(--gray-6);
+}
+
+.desc-container {
+  grid-column: 2 / 3;
+  grid-row: 1 / 3;
+  align-items: end;
+  justify-content: end;
+  display: flex;
+  flex-flow: column nowrap;
+  font-size: var(--step-4);
+  font-weight: 300;
+  line-height: 1.375;
+  span {
+    font-weight: 200;
+    font-size: var(--step-4);
+    color: var(--gray-11);
+  }
+}
+.desc-header {
+  font-size: var(--step-3);
+  font-weight: 200;
+  line-height: 1;
+  display: flex;
+  svg {
+    width: var(--step-3);
+    height: var(--step-3);
+  }
+}

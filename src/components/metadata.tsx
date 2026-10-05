@@ -1,16 +1,23 @@
 export interface MetadataProps {
   title: string;
-  description: string;
-  author: string;
+  description?: string;
+  author?: string;
   slugs?: string[];
   tags?: string[];
   ogOverride?: string;
 }
 
-export function Metadata({ title, description, author, slugs, tags, ogOverride }: MetadataProps) {
+export function Metadata({
+  title,
+  description = 'I make cool apps and fool snacks.',
+  author = 'silvecor',
+  slugs,
+  tags,
+  ogOverride,
+}: MetadataProps) {
   const fullTitle = `${title} | silvecor.dev`;
   const url = `https://silvecor.dev${slugs ? `/${slugs.join('/')}` : ''}`;
-  const image = ogOverride ?? `https://silveocr.dev/og${slugs ? `/${slugs.join('/')}` : ''}/image.webp`;
+  const image = ogOverride ?? `https://silvecor.dev/og${slugs ? `/${slugs.join('/')}` : ''}/image.webp`;
 
   const og = [
     ['title', title],
