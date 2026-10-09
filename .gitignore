@@ -11,3 +11,4 @@ public/static
 pages.gen.ts
 worker-configuration.d.ts
 src/routeTree.gen.ts
+.tanstack

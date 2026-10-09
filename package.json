@@ -15,7 +15,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@base-ui/react": "^1.8.0",
+    "@base-ui/react": "^1.9.0",
     "@daiji256/rehype-mathml": "^1.2.2",
     "@expressive-code/plugin-collapsible-sections": "^0.43.1",
     "@expressive-code/plugin-line-numbers": "^0.43.1",
@@ -25,8 +25,8 @@
     "clsx": "^2.1.1",
     "es-toolkit": "^1.52.0",
     "feed": "^6.0.0",
-    "fumadocs-core": "^16.16.2",
-    "fumadocs-mdx": "^15.4.6",
+    "fumadocs-core": "^16.17.1",
+    "fumadocs-mdx": "^15.4.7",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "rehype-expressive-code": "^0.43.1",
@@ -38,7 +38,7 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "^1.62.5",
+    "@cloudflare/vite-plugin": "^1.63.1",
     "@commitlint/config-conventional": "^21.2.3",
     "@csstools/postcss-global-data": "^4.0.0",
     "@iconify-json/ph": "^1.2.2",
@@ -54,14 +54,14 @@
     "commitlint": "^21.2.3",
     "eslint": "^10.12.0",
     "eslint-config-silvecor": "^0.2.0",
-    "lefthook": "^2.1.17",
+    "lefthook": "^2.2.1",
     "lint-staged": "^17.6.0",
     "oxc-transform-react": "^0.153.0",
     "postcss": "^8.5.29",
     "postcss-preset-env": "^11.6.1",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
     "unplugin-icons": "^24.0.0",
-    "vite": "^8.3.2",
-    "wrangler": "^4.147.0"
+    "vite": "^8.3.4",
+    "wrangler": "^4.149.0"
   }
 }
