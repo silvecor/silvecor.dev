@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
     "incremental": true,
-    "target": "ES2025",
+    "target": "ES2022",
     "jsx": "react-jsx",
     "lib": [
-      "ES2025",
+      "ES2022",
       "DOM",
       "DOM.Iterable"
     ],
     "moduleDetection": "force",
-    "module": "esnext",
+    "module": "ESNext",
     "moduleResolution": "bundler",
     "paths": {
       "@/*": [
@@ -37,7 +37,6 @@
     "noUnusedParameters": false,
     "noEmit": true,
     "esModuleInterop": true,
-    "verbatimModuleSyntax": true,
     "skipLibCheck": true
   },
   "include": [

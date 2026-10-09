@@ -1,3 +1,4 @@
+import pluginRouter from '@tanstack/eslint-plugin-router';
 import silvecor from 'eslint-config-silvecor';
 
 export default silvecor({
@@ -10,13 +11,19 @@ export default silvecor({
     framework: 'vite',
     reactFastRefresh: {
       allowConstantExport: true,
-      allowExportNames: ['getConfig'],
+      allowExportNames: ['Route'],
     },
-    rsc: true,
   },
   format: true,
 }).override('silvecor/react', {
   rules: {
     'react/exhaustive-deps': ['warn'],
+  },
+}).append({
+  plugins: {
+    '@tanstack/router': pluginRouter,
+  },
+  rules: {
+    '@tanstack/router/create-route-property-order': 'error',
   },
 });

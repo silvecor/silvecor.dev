@@ -1,12 +1,11 @@
-import { Link } from 'waku';
+import { Link } from '@tanstack/react-router';
 import ArrowLeft from '~icons/ph/arrow-left';
-import { Metadata } from '@/components/metadata';
-import s from './404.module.css';
+import s from './not-found.module.css';
 
-export default async function Home() {
+export function NotFound() {
   return (
     <div className={s.container}>
-      <Metadata title='404' />
+      <title>404 | silvecor.dev</title>
       <section className={s.info}>
         <h1 className={s.title}>404</h1>
         <p className={s.desc}>How did we get here?</p>

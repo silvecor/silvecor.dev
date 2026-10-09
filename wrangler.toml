@@ -1,7 +1,8 @@
 '$schema' = './node_modules/wrangler/config-schema.json'
 name = 'silvecor-dev'
-main = './src/waku.server'
-compatibility_date = '2026-09-14'
+main = '@tanstack/react-start/server-entry'
+compatibility_date = '2026-10-09'
+compatibility_flags = [ 'nodejs_compat' ]
 
 upload_source_maps = true
 

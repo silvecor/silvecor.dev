@@ -1,13 +1,13 @@
+import { Link } from '@tanstack/react-router';
 import { Fragment } from 'react';
-import { Link } from 'waku';
 import s from './nav.module.css';
 import { Search } from './search';
 import { ThemeButton } from './theme-button';
 
 const navList = [
-  { text: 'Home', href: '/' },
-  { text: 'Posts', href: '/posts' },
-  { text: 'Projects', href: '/projects' },
+  { text: 'Home', to: '/' },
+  { text: 'Posts', to: '/posts' },
+  { text: 'Projects', to: '/projects' },
 ];
 
 export function Nav() {
@@ -18,9 +18,9 @@ export function Nav() {
           silvecor<span>.</span>dev
         </Link>
         <div className={s.navbarSeparator} />
-        {navList.map(({ text, href }) => (
+        {navList.map(({ text, to }) => (
           <Fragment key={text}>
-            <Link to={href as any} className={s.navbarButton}>
+            <Link to={to} className={s.navbarButton}>
               {text}
             </Link>
             <div className={s.navbarSeparator} />

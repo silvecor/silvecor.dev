@@ -1,11 +1,9 @@
-'use client';
-
 import { Dialog, Input } from '@base-ui/react';
+import { Link } from '@tanstack/react-router';
 import clsx from 'clsx';
 import { useDocsSearch } from 'fumadocs-core/search/client';
 import { fetchClient } from 'fumadocs-core/search/client/fetch';
 import { Fragment, type ReactNode } from 'react';
-import { Link } from 'waku';
 import SearchIcon from '~icons/ph/magnifying-glass';
 import s from './search.module.css';
 

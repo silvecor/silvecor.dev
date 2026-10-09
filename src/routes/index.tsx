@@ -1,10 +1,11 @@
+import { createFileRoute } from '@tanstack/react-router';
 import { Fragment } from 'react';
 import Binary from '~icons/ph/binary';
 import Email from '~icons/ph/envelope-simple';
 import GitHub from '~icons/ph/github-logo';
 import Lightbulb from '~icons/ph/lightbulb-light';
 import Twitter from '~icons/ph/twitter-logo';
-import { Metadata } from '@/components/metadata';
+import { metadata } from '@/lib/metadata';
 import s from './index.module.css';
 
 const actions = [
@@ -14,10 +15,14 @@ const actions = [
   { label: 'knowledge base', icon: Binary, href: 'https://ob.silvecor.dev' },
 ];
 
-export default async function Home() {
+export const Route = createFileRoute('/')({
+  head: () => metadata({ title: 'Home' }),
+  component: HomeComponent,
+});
+
+export function HomeComponent() {
   return (
     <div className={s.container}>
-      <Metadata title='Home' />
       <section className={s.hero}>
         <div className={s.intro}>
           <h1 className={s.name}>Silver Chloride</h1>

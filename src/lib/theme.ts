@@ -1,5 +1,3 @@
-'use client';
-
 import { createContext, use } from 'react';
 
 export const lsKey = 'theme';

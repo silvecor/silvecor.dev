@@ -10,3 +10,4 @@ public/static
 .wrangler
 pages.gen.ts
 worker-configuration.d.ts
+src/routeTree.gen.ts
