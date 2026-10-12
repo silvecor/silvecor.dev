@@ -1,6 +1,5 @@
 node_modules
 dist
-.source
 public/static
 .DS_Store
 *.pem
@@ -12,3 +11,4 @@ pages.gen.ts
 worker-configuration.d.ts
 src/routeTree.gen.ts
 .tanstack
+.content-collections

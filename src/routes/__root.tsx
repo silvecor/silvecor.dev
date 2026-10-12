@@ -37,7 +37,7 @@ export const Route = createRootRoute({
   notFoundComponent: NotFound,
 });
 
-export function RootComponent() {
+function RootComponent() {
   return (
     <html lang='en' suppressHydrationWarning>
       <head>

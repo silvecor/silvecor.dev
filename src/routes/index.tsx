@@ -20,7 +20,7 @@ export const Route = createFileRoute('/')({
   component: HomeComponent,
 });
 
-export function HomeComponent() {
+function HomeComponent() {
   return (
     <div className={s.container}>
       <section className={s.hero}>

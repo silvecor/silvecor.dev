@@ -9,7 +9,7 @@ import remarkDirective from 'remark-directive';
 import remarkMath from 'remark-math';
 import { z } from 'zod';
 
-export const blog = defineCollections({
+export const posts = defineCollections({
   type: 'doc',
   dir: './content/posts',
   schema: z.object({

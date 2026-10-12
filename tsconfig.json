@@ -15,8 +15,8 @@
       "@/*": [
         "./src/*"
       ],
-      "collections/*": [
-        "./.source/*"
+      "collections": [
+        "./.content-collections/generated"
       ]
     },
     "resolveJsonModule": true,
@@ -25,7 +25,10 @@
       "node",
       "vite",
       "vite/client",
-      "unplugin-icons/types/react"
+      "unplugin-icons/types/react",
+      "mdast",
+      "mdast-util-to-hast",
+      "hast"
     ],
     "allowImportingTsExtensions": true,
     "strict": true,
