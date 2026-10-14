@@ -87,17 +87,14 @@
   transition: background-color 0.2s;
   background-color: transparent;
   text-wrap-style: pretty;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: var(--space-3xs);
   &:hover {
     background-color: var(--gray-4);
   }
-  &.page {
-  }
-  &.heading {
-  }
-  &.text {
-    .target {
-      color: var(--blue-11);
-      text-decoration: underline var(--blue-6) solid 1px;
-    }
+  .target {
+    color: var(--blue-11);
+    text-decoration: underline var(--blue-6) solid 1px;
   }
 }

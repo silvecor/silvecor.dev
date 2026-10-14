@@ -1,5 +1,3 @@
-'use client';
-
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { lsKey, type ResolvedTheme, type Theme, ThemeContext } from '@/lib/theme';
 

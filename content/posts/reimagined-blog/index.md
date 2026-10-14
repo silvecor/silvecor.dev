@@ -2,12 +2,9 @@
 title: Reimagined Static Blog
 date: 2025-10-06
 description: Perspectives and insights on static blogs from a minimalist design engineer.
-image: ./banner.png
 tags:
   - frontend
   - react
-authors:
-  - hellolin
 ---
 
 ## Introduction
@@ -22,7 +19,7 @@ The DX of [Next.js](https://nextjs.org) is like a pool of slop; however, its won
 
 [Velite](https://velite.js.org) is a lightweight but brilliant content management solution - it gives exactly what I want. And of course I'm enjoying the large [remark](https://remark.js.org/) ecosystem, particularly [Expressive Code](https://expressive-code.com), which provides beautiful code blocks without too much config. It also ships with some features like line numbers, a copy button, highlighting, and more. All of these, however, only need a simple line of React code to enable them.
 
-``` tsx
+```tsx
 const getMDXComponent = (code: string) => {
   // eslint-disable-next-line ts/no-implied-eval
   const fn = new Function(code);

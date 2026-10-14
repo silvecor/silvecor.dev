@@ -3,6 +3,8 @@ trustPolicy: no-downgrade
 trustPolicyExclude:
   - 'semver@6.3.1' # stylex
 
+packages:
+  - packages/*
 allowBuilds:
   esbuild: true
   lefthook: true

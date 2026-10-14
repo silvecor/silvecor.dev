@@ -1,18 +1,28 @@
 import { Dialog, Input } from '@base-ui/react';
 import { Link } from '@tanstack/react-router';
 import clsx from 'clsx';
-import { useDocsSearch } from 'fumadocs-core/search/client';
-import { fetchClient } from 'fumadocs-core/search/client/fetch';
-import { Fragment, type ReactNode } from 'react';
+import { Fragment, type ReactNode, useDeferredValue, useEffect, useState } from 'react';
 import SearchIcon from '~icons/ph/magnifying-glass';
 import s from './search.module.css';
 
-interface Result {
-  id: string;
+interface PagefindData {
   url: string;
-  type: 'page' | 'heading' | 'text';
-  content: string;
+  excerpt: string;
+  meta: { title?: string };
 }
+
+interface PagefindResult {
+  id: string;
+  data: ()=> Promise<PagefindData>;
+}
+
+declare global {
+  var pagefind: undefined | {
+    init: ()=> void;
+    debouncedSearch: (query: string)=> Promise<{ results: PagefindResult[] } | null>;
+  };
+}
+
 function getResultText(content: string) {
   const pattern = /<mark>([\s\S]*?)<\/mark>/g;
   const nodes: ReactNode[] = [];
@@ -35,12 +45,13 @@ function getResultText(content: string) {
 
   return nodes;
 }
-function ResultList({ items }: { items?: Result[] | undefined }) {
+function ResultList({ results }: { results: PagefindData[] }) {
   return (
     <>
-      {items?.map(i => (
-        <Link className={clsx(s.resultItem, s[i.type])} to={i.url as any} key={i.id}>
-          {getResultText(i.content)}
+      {results.map(i => (
+        <Link className={s.resultItem} to={i.url as any} key={i.url}>
+          <strong>{i.meta.title ?? i.url}</strong>
+          <p>{getResultText(i.excerpt)}</p>
         </Link>
       ))}
     </>
@@ -48,24 +59,42 @@ function ResultList({ items }: { items?: Result[] | undefined }) {
 }
 
 export function Search({ className }: { className?: string }) {
-  const { query, setSearch } = useDocsSearch({
-    delayMs: 800,
-    client: fetchClient(),
-  });
+  const [query, setQuery] = useState('');
+  const deferredQuery = useDeferredValue(query);
+  const [status, setStatus] = useState<string | null>('Type above to search.');
+  const [results, setResults] = useState<PagefindData[]>([]);
 
-  let statusText: string = '';
+  useEffect(() => {
+    globalThis.pagefind?.init();
+  }, []);
 
-  if (query.isLoading) {
-    statusText = 'Loading...';
-  } else if (query.error) {
-    statusText = 'Something went wrong. Open the console to see details.';
-    console.error(query.error);
-  } else if (query.data === 'empty') {
-    // initial
-    statusText = 'Type to search! At least 3 characters are required.';
-  } else if (query.data?.length === 0) {
-    statusText = 'No results found.';
-  }
+  useEffect(() => {
+    void (async value => {
+      if (value === '') {
+        setStatus('Type above to search.');
+        setResults([]);
+        return;
+      }
+      if (typeof (globalThis.pagefind) === 'undefined') {
+        setStatus('Failed to load the search module. Try refreshing the page, and check if your browser is too old.');
+        setResults([]);
+        return;
+      }
+      const resp = await globalThis.pagefind.debouncedSearch(value);
+      if (!resp) {
+        setStatus('No results found.');
+        setResults([]);
+        return;
+      }
+      const results = await Promise.all(resp.results.slice(0, 5).map(i => i.data()));
+      setResults(results);
+      if (results.length === 0) {
+        setStatus('No results found.');
+      } else {
+        setStatus(null);
+      }
+    })(deferredQuery);
+  }, [deferredQuery]);
 
   return (
     <Dialog.Root>
@@ -84,12 +113,13 @@ export function Search({ className }: { className?: string }) {
                 autoComplete='off'
                 placeholder='Search posts...'
                 aria-label='search query'
-                onValueChange={setSearch}
+                value={query}
+                onValueChange={setQuery}
               />
             </section>
             <section className={s.popupResult}>
-              {(typeof query.data !== 'object' || query.data.length === 0) && <div className={s.status}>{statusText}</div>}
-              <ResultList items={query.data === 'empty' ? undefined : query.data} />
+              {status && <div className={s.status}>{status}</div>}
+              <ResultList results={results} />
             </section>
           </Dialog.Popup>
         </Dialog.Viewport>

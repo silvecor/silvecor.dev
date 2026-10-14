@@ -1,5 +1,5 @@
 import { cloudflare } from '@cloudflare/vite-plugin';
-import contentCollections from '@content-collections/vite';
+import { velite } from '@silvecor/vite-plugin-velite';
 import { tanstackStart } from '@tanstack/react-start/plugin/vite';
 import react from '@vitejs/plugin-react';
 import icons from 'unplugin-icons/vite';
@@ -18,7 +18,7 @@ export default defineConfig({
     tsconfigPaths: true,
   },
   plugins: [
-    contentCollections(),
+    velite(),
     cloudflare({
       viteEnvironment: { name: 'ssr' },
     }),

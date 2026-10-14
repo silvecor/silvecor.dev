@@ -7,7 +7,8 @@ compatibility_flags = [ 'nodejs_compat' ]
 upload_source_maps = true
 
 [assets]
-directory = './dist/public'
+binding = 'ASSETS'
+directory = './dist/client'
 html_handling = 'drop-trailing-slash'
 
 [observability]

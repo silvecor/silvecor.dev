@@ -1,5 +1,3 @@
-'use client';
-
 import { Button } from '@base-ui/react';
 import clsx from 'clsx';
 import Moon from '~icons/ph/moon';

@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "types": [
+      "hast",
+      "mdast",
+      "mdast-util-to-hast",
+      "remark-directive"
+    ],
+    "allowImportingTsExtensions": true,
+    "noEmit": true
+  }
+}

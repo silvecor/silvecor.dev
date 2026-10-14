@@ -1,5 +1,5 @@
 import type { Nodes, Root } from 'mdast';
-import { visit } from './visit';
+import { visit } from './utils/visit.ts';
 
 const calloutList = new Set(['info', 'warning', 'danger', 'success', 'summary']);
 

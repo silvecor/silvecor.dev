@@ -1,11 +1,13 @@
 import { createRootRoute, HeadContent, Outlet, ScriptOnce, Scripts } from '@tanstack/react-router';
+import { ErrorBoundary } from '@/components/error-boundary';
 import { Footer } from '@/components/footer';
 import { Nav } from '@/components/nav';
 import { NotFound } from '@/components/not-found';
 import { ThemeProvider } from '@/components/theme-provider';
+import { searchScript } from '@/lib/search';
 import { themeScript } from '@/lib/theme';
-import s from './__root.module.css';
 
+import s from './__root.module.css';
 import '@/styles/index.css';
 
 export const Route = createRootRoute({
@@ -35,6 +37,7 @@ export const Route = createRootRoute({
   }),
   component: RootComponent,
   notFoundComponent: NotFound,
+  errorComponent: ErrorBoundary,
 });
 
 function RootComponent() {
@@ -43,6 +46,7 @@ function RootComponent() {
       <head>
         <HeadContent />
         <ScriptOnce children={themeScript} />
+        <ScriptOnce children={searchScript} />
       </head>
       <body>
         <ThemeProvider>
@@ -50,7 +54,7 @@ function RootComponent() {
             <header className={s.header}>
               <Nav />
             </header>
-            <main className={s.main}>
+            <main className={s.main} id='scrollable-area'>
               <div className={s.mainContent}>
                 <Outlet />
               </div>

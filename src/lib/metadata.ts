@@ -5,8 +5,8 @@ export interface MetadataProps {
   date?: string;
   author?: string;
   slugs?: string[];
-  tags?: string[];
-  image?: string;
+  tags?: string[] | undefined;
+  image?: string | undefined;
 }
 
 export function metadata({

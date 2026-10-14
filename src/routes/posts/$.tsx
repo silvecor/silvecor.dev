@@ -1,36 +1,31 @@
 import { createFileRoute, notFound } from '@tanstack/react-router';
-import { createServerFn } from '@tanstack/react-start';
-import browserCollections from 'collections/browser';
-import { source } from '@/lib/source';
+import { posts } from 'collections';
+import { metadata } from '@/lib/metadata';
+import { getPostContent } from '@/lib/post-content';
 
 export const Route = createFileRoute('/posts/$')({
   component: PostsComponent,
   loader: async ({ params }) => {
-    const slugs = params._splat?.split('/') ?? [];
-    const path = await serverLoader({ data: slugs });
-    await clientLoader.preload(path);
-    return path;
+    const post = posts.find(i => i.slug === params._splat);
+    if (!post) throw notFound();
+    return { ...post, ...(await getPostContent(params._splat!)) };
   },
-});
-
-const serverLoader = createServerFn({ method: 'GET' })
-  .validator((slugs: string[]) => slugs)
-  .handler(async ({ data: slugs }) => {
-    const page = source.getPage(slugs);
-    if (!page) throw notFound();
-    return page.path;
-  });
-
-const clientLoader = browserCollections.posts.createClientLoader({
-  component: ({ default: MDX, frontmatter }) => {
-    return (
-      <MDX />
-    );
-  },
+  head: ({ loaderData: post }) => metadata({
+    isArticle: true,
+    slugs: ['posts', post!.slug!],
+    image: post!.banner?.light?.src,
+    ...post,
+  }),
 });
 
 function PostsComponent() {
-  const data = Route.useLoaderData();
+  const post = Route.useLoaderData();
 
-  return clientLoader.useContent(data);
+  return (
+    <article data-pagefind-body>
+      <h1>{post.title}</h1>
+      {/* eslint-disable-next-line react/dom-no-dangerously-set-innerhtml */}
+      <div className='prose' dangerouslySetInnerHTML={{ __html: post.content.html }} />
+    </article>
+  );
 }

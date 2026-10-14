@@ -1,0 +1,6 @@
+{
+  "name": "@silvecor/vite-plugin-velite",
+  "type": "module",
+  "private": true,
+  "exports": "./src/index.ts"
+}

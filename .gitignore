@@ -1,5 +1,7 @@
 node_modules
 dist
+.velite
+public/content
 public/static
 .DS_Store
 *.pem
@@ -11,4 +13,3 @@ pages.gen.ts
 worker-configuration.d.ts
 src/routeTree.gen.ts
 .tanstack
-.content-collections

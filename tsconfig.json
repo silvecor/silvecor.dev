@@ -16,7 +16,7 @@
         "./src/*"
       ],
       "collections": [
-        "./.content-collections/generated"
+        "./.velite"
       ]
     },
     "resolveJsonModule": true,
@@ -25,10 +25,7 @@
       "node",
       "vite",
       "vite/client",
-      "unplugin-icons/types/react",
-      "mdast",
-      "mdast-util-to-hast",
-      "hast"
+      "unplugin-icons/types/react"
     ],
     "allowImportingTsExtensions": true,
     "strict": true,
