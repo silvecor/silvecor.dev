@@ -16,7 +16,8 @@
 :root {
   /* Fonts */
   --font-emoji-fallback: 'Apple Color Emoji', 'Noto Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-  --font-sans: 'IBM Plex Sans', 'Noto Sans JP', 'Noto Sans SC', -apple-system, ui-sans-serif, system-ui, sans-serif, var(--font-emoji-fallback);
+  --font-sans:
+    'IBM Plex Sans', 'Helvetica Neue', 'Noto Sans SC', 'Noto Sans JP', -apple-system, ui-sans-serif, system-ui, sans-serif, var(--font-emoji-fallback);
   --font-mono: 'Geist Mono', ui-monospace, monospace, Menlo, SFMono, Consolas, var(--font-emoji-fallback);
 
   /* Blur */

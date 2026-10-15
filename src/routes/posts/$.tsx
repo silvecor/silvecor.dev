@@ -1,5 +1,7 @@
+import { Toc } from '@ark-ui/react';
 import { createFileRoute, notFound } from '@tanstack/react-router';
 import { posts } from 'collections';
+import { useRef } from 'react';
 import { metadata } from '@/lib/metadata';
 import { getPostContent } from '@/lib/post-content';
 
@@ -16,16 +18,23 @@ export const Route = createFileRoute('/posts/$')({
     image: post!.banner?.light?.src,
     ...post,
   }),
+  preload: false,
 });
 
 function PostsComponent() {
   const post = Route.useLoaderData();
+  const contentRef = useRef<HTMLElement | null>(null);
 
   return (
-    <article data-pagefind-body>
-      <h1>{post.title}</h1>
-      {/* eslint-disable-next-line react/dom-no-dangerously-set-innerhtml */}
-      <div className='prose' dangerouslySetInnerHTML={{ __html: post.content.html }} />
-    </article>
+    <Toc.Root asChild items={post.content.toc} scrollEl={() => contentRef.current}>
+      <article data-pagefind-body>
+        <Toc.Content ref={contentRef}>
+          <h1>{post.title}</h1>
+          {/* eslint-disable-next-line react/dom-no-dangerously-set-innerhtml */}
+          <div className='prose' dangerouslySetInnerHTML={{ __html: post.content.html }} />
+        </Toc.Content>
+
+      </article>
+    </Toc.Root>
   );
 }

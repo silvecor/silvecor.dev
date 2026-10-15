@@ -1,4 +1,4 @@
-import { Dialog, Input } from '@base-ui/react';
+import { Dialog, Portal } from '@ark-ui/react';
 import { Link } from '@tanstack/react-router';
 import clsx from 'clsx';
 import { Fragment, type ReactNode, useDeferredValue, useEffect, useState } from 'react';
@@ -13,13 +13,13 @@ interface PagefindData {
 
 interface PagefindResult {
   id: string;
-  data: ()=> Promise<PagefindData>;
+  data: () => Promise<PagefindData>;
 }
 
 declare global {
   var pagefind: undefined | {
-    init: ()=> void;
-    debouncedSearch: (query: string)=> Promise<{ results: PagefindResult[] } | null>;
+    init: () => void;
+    debouncedSearch: (query: string) => Promise<{ results: PagefindResult[] } | null>;
   };
 }
 
@@ -97,33 +97,33 @@ export function Search({ className }: { className?: string }) {
   }, [deferredQuery]);
 
   return (
-    <Dialog.Root>
+    <Dialog.Root lazyMount>
       <Dialog.Trigger className={clsx(s.button, className)}>
         <SearchIcon />
       </Dialog.Trigger>
-      <Dialog.Portal aria-label='search dialog'>
+      <Portal>
         <Dialog.Backdrop className={s.backdrop} />
-        <Dialog.Viewport className={s.viewport}>
-          <Dialog.Popup className={s.popup}>
+        <Dialog.Positioner className={s.viewport} aria-label='search dialog'>
+          <Dialog.Content className={s.popup}>
             <section className={s.popupSearch}>
               <SearchIcon aria-hidden />
-              <Input
+              <input
                 className={s.popupInput}
                 type='search'
                 autoComplete='off'
                 placeholder='Search posts...'
                 aria-label='search query'
                 value={query}
-                onValueChange={setQuery}
+                onChange={e => setQuery(e.target.value)}
               />
             </section>
             <section className={s.popupResult}>
               {status && <div className={s.status}>{status}</div>}
               <ResultList results={results} />
             </section>
-          </Dialog.Popup>
-        </Dialog.Viewport>
-      </Dialog.Portal>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Portal>
     </Dialog.Root>
   );
 }

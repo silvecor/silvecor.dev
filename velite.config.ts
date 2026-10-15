@@ -16,6 +16,7 @@ const posts = defineCollection({
     tags: s.array(s.string()).optional(),
     content: markdown(),
     slug: s.path().transform(path => path.split('/').pop()),
+    meta: s.metadata(),
   }).transform(async ({ content, ...rest }) => {
     await mkdir('public/content/posts', { recursive: true });
     await writeFile(`public/content/posts/${rest.slug}.json`, JSON.stringify({ content }), { flag: 'w' });

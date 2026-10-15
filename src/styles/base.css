@@ -12,11 +12,27 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+[hidden] {
+  display: none;
+}
+
 .light {
   color-scheme: light;
+  [data-theme-light] {
+    display: block;
+  }
+  [data-theme-dark] {
+    display: none;
+  }
 }
 .dark {
   color-scheme: dark;
+  [data-theme-dark] {
+    display: block;
+  }
+  [data-theme-light] {
+    display: none;
+  }
 }
 
 ::selection {

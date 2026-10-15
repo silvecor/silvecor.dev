@@ -1,4 +1,3 @@
-import { Button } from '@base-ui/react';
 import clsx from 'clsx';
 import Moon from '~icons/ph/moon';
 import Sun from '~icons/ph/sun';
@@ -9,12 +8,13 @@ export function ThemeButton({ className }: { className?: string }) {
   const { resolvedTheme, setTheme } = useTheme();
 
   return (
-    <Button
+    <button
+      type='button'
       className={clsx(s.button, className)}
       onClick={() => { setTheme(resolvedTheme === 'light' ? 'dark' : 'light'); }}
     >
-      <Moon className={s.darkIcon} />
-      <Sun className={s.lightIcon} />
-    </Button>
+      <Sun data-theme-light />
+      <Moon data-theme-dark />
+    </button>
   );
 }

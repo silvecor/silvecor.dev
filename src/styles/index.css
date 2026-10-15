@@ -3,3 +3,5 @@
 @import './preflight.css' layer(preflight);
 @import './vars.css' layer(vars);
 @import './base.css' layer(base);
+
+@import './prose.css' layer(components);

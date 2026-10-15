@@ -2,6 +2,9 @@
 title: Reimagined Static Blog
 date: 2025-10-06
 description: Perspectives and insights on static blogs from a minimalist design engineer.
+banner:
+  light: banner.png
+  dark: banner.png
 tags:
   - frontend
   - react
@@ -9,15 +12,23 @@ tags:
 
 ## Introduction
 
-I've always felt that I need a blog as my landfill of opinions and insights. After I decided to build one, I found none of the existing templates or frameworks fit me well. Sadly, or more frankly, they are bloated, old-fashioned, not customizable, or just not to my taste in design.
+### Lorem ipsum
 
-So in such a situation, building an entire personal website from scratch sounds attractive, for you don't have to bear those disadvantages. Honestly, I've started building my website multiple times, but never ended up establishing it to the public, only for I had some better ideas (actually they weren't) on the work finished so far and urgently started over.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce auctor elit non nulla sagittis pharetra. Cras ut velit commodo, fringilla felis ut, porttitor eros. Donec lorem urna, bibendum non sapien nec, dapibus auctor libero. Integer fermentum id lectus vitae semper.
 
-## Embrace Modern Frameworks
+### Morbi gravida
 
-The DX of [Next.js](https://nextjs.org) is like a pool of slop; however, its wonderful performance and fabulous UX make it the first choice of such a website. And I like the approach of Atomic CSS, which gives me fine-grained control of my components without boring effort on how to organise styles, so I pick [UnoCSS](https://unocss.dev).
+#### Part 1
 
-[Velite](https://velite.js.org) is a lightweight but brilliant content management solution - it gives exactly what I want. And of course I'm enjoying the large [remark](https://remark.js.org/) ecosystem, particularly [Expressive Code](https://expressive-code.com), which provides beautiful code blocks without too much config. It also ships with some features like line numbers, a copy button, highlighting, and more. All of these, however, only need a simple line of React code to enable them.
+Morbi gravida massa ac sem hendrerit tincidunt. Vivamus aliquet, est sit amet tempor pellentesque, metus nibh sagittis enim, sit amet interdum erat massa et dui. Praesent sodales augue sit amet fermentum ultrices. Donec in egestas est, at mollis tellus. Vivamus condimentum nec ligula id lacinia. In hac habitasse platea dictumst. Nulla elementum quam eget magna tempor, sed aliquet justo posuere. Sed non fermentum quam.
+
+#### Part 2
+
+Ut rhoncus justo ut lorem maximus pretium. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Cras hendrerit turpis congue, vulputate ligula in, rutrum quam.
+
+Integer molestie odio condimentum aliquam pulvinar. Duis suscipit nisi a quam malesuada, eleifend posuere mi efficitur. Maecenas eget venenatis velit. Suspendisse eget pellentesque velit. Donec volutpat mauris ac sapien porta rutrum. Aliquam sit amet lacus dapibus, malesuada eros sed, vehicula dolor. Fusce id lobortis nunc. Integer pellentesque vulputate lectus, quis accumsan augue. Nullam non varius nunc, efficitur vestibulum odio. Cras libero leo, facilisis sed nisi eget, bibendum mollis nisi. Vestibulum eget tellus velit. Nulla facilisi.
+
+## Code
 
 ```tsx
 const getMDXComponent = (code: string) => {
@@ -35,26 +46,10 @@ export const MDXContent = ({
 };
 ```
 
-I've also been writing some practical utilities like `createRecipe`, which is similar to Chakra UI. It is that simple but awesome.
+:::note[This is title]
+Lorem ipsum dolor sit amet.
+:::
 
-For more details you might be interested in, you can visit [the source code](https://github.com/VLTHellolin/hellolin.top) of this website.
+Nulla facilisi. Morbi id aliquet libero. Suspendisse nunc ipsum, imperdiet quis viverra id, finibus vitae sem. Suspendisse lacinia convallis metus vitae pretium. Vestibulum id consequat ante. Nullam faucibus quam eget quam faucibus posuere. Aliquam dolor nisl, ullamcorper id sagittis in, convallis sit amet risus. Fusce bibendum lacinia magna, eget convallis erat placerat at.
 
-## Why We Don't Need...
-
-### A Search Button
-
-It should be Bing or Google's responsibility, not mine. All I need to do is some simple SEO things.
-
-### CMS
-
-I tend to only share my unique opinions, inspiring math topics, and effective methods of coding on a public blog, not notes I take in classes. So it will be much easier to maintain if I use a simple file system-based approach to manage posts.
-
-Though I really like Notion's editor and its philosophy in organising papers, it's hard to bring Notion to a small personal website of a minimalist.
-
-### Comment System
-
-Actually, I want one. However, considering the difficulty of integrating the system and the necessity to moderate spam comments, I'd rather simply share my posts on social media.
-
-## Wrapping Up
-
-So the purpose of writing this post is to share the most suitable technology stack for engineers like me to start their blog. There are a number of exciting features I haven't shown in this post, like Callouts or math formulas. Again, if you are interested, visit [the source code](https://github.com/VLTHellolin/hellolin.top). It's AGPL licensed!
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium at enim posuere fermentum. Aliquam at fermentum velit. Nullam ut mi enim. Suspendisse sit amet mi vulputate, aliquet odio ac, malesuada leo. Donec eros mauris, pretium sed vehicula at, luctus ut dolor. Curabitur et suscipit erat. Duis quis finibus felis, in fringilla elit. In et lacus eu nisl consectetur pulvinar. Sed congue maximus velit, id bibendum mi ultricies fermentum. Nulla bibendum auctor lacus pretium euismod. Vestibulum quis diam ut lacus sollicitudin tempor. Etiam ornare gravida enim id pellentesque. Sed ultricies lobortis eros sit amet luctus.

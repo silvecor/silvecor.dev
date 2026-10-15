@@ -21,6 +21,10 @@ export default silvecor({
     'ts/no-confusing-void-expression': 'off',
     'ts/only-throw-error': ['error', { allow: ['NotFoundError'] }],
   },
+}).override('silvecor/typescript/style', {
+  rules: {
+    'style/type-annotation-spacing': 'off', // FIXME
+  },
 }).override('silvecor/react', {
   rules: {
     'react/exhaustive-deps': ['warn'],

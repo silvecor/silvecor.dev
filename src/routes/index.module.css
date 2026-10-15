@@ -51,7 +51,7 @@
   transition:
     background-color 0.2s,
     color 0.2s;
-  &:is(:hover, :focus) {
+  &:is(:hover, :focus-visible) {
     background-color: var(--gray-12);
     color: var(--gray-4);
   }
@@ -88,5 +88,40 @@
   svg {
     width: var(--step-3);
     height: var(--step-3);
+  }
+}
+
+.posts {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: var(--space-xs);
+}
+.posts-heading {
+  font-size: var(--step-2);
+  font-weight: 300;
+}
+.posts-container {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: var(--space-xs-s);
+}
+.posts-more {
+  font-size: var(--step--1);
+  align-self: self-end;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3xs);
+  box-shadow: 0 0 0 1px var(--gray-6);
+  padding: var(--space-2xs);
+  padding-left: var(--space-xs);
+  transition:
+    box-shadow 0.2s,
+    background-color 0.2s;
+  svg {
+    translate: 0 1px;
+  }
+  &:is(:hover, :focus-visible) {
+    box-shadow: 0 0 0 1px var(--gray-8);
+    background-color: var(--gray-4);
   }
 }

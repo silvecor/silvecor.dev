@@ -4,8 +4,9 @@ import { getValue } from './utils/get-value.ts';
 import { visit } from './utils/visit.ts';
 
 export interface TocItem {
-  slug: string;
-  step: 1 | 2 | 3 | 4 | 5 | 6;
+  value: string;
+  label: string;
+  depth: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
 const slugger = new Slugger();
@@ -21,7 +22,8 @@ export function rehypeHeading(toc: TocItem[]) {
         || !/^h[1-6]$/.test(node.tagName)
       ) return;
 
-      const slug = slugger.slug(getValue(node));
+      const content = getValue(node);
+      const slug = slugger.slug(content);
       node.properties.id = slug;
 
       node.children.push({
@@ -42,7 +44,11 @@ export function rehypeHeading(toc: TocItem[]) {
         }],
       });
 
-      toc.push({ slug, step: Number(node.tagName[1]) as any });
+      toc.push({
+        value: slug,
+        label: content,
+        depth: Number(node.tagName[1]) as any,
+      });
     });
   };
 }
