@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { posts } from 'collections';
 import { Fragment } from 'react';
 import ArrowUpRight from '~icons/ph/arrow-up-right';
 import Binary from '~icons/ph/binary';
@@ -9,6 +8,7 @@ import Lightbulb from '~icons/ph/lightbulb-light';
 import Twitter from '~icons/ph/twitter-logo';
 import { Post } from '@/components/post';
 import { metadata } from '@/lib/metadata';
+import { getRecentPosts } from '@/lib/posts';
 import s from './index.module.css';
 
 const actions = [
@@ -20,7 +20,7 @@ const actions = [
 
 export const Route = createFileRoute('/')({
   loader: () => {
-    return posts.slice(0, 2);
+    return getRecentPosts();
   },
   component: HomeComponent,
   head: () => metadata({ title: 'Home' }),

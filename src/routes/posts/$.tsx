@@ -1,14 +1,14 @@
 import { Toc } from '@ark-ui/react';
 import { createFileRoute, notFound } from '@tanstack/react-router';
-import { posts } from 'collections';
 import { useRef } from 'react';
 import { metadata } from '@/lib/metadata';
 import { getPostContent } from '@/lib/post-content';
+import { getPosts } from '@/lib/posts';
 
 export const Route = createFileRoute('/posts/$')({
   component: PostsComponent,
   loader: async ({ params }) => {
-    const post = posts.find(i => i.slug === params._splat);
+    const post = getPosts().find(i => i.slug === params._splat);
     if (!post) throw notFound();
     return { ...post, ...(await getPostContent(params._splat!)) };
   },
