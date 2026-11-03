@@ -22,32 +22,29 @@ export function rehypeHeading(toc: TocItem[]) {
         || !/^h[1-6]$/.test(node.tagName)
       ) return;
 
+      const depth = Number(node.tagName[1]) as 1 | 2 | 3 | 4 | 5 | 6;
+
       const content = getValue(node);
       const slug = slugger.slug(content);
       node.properties.id = slug;
+      node.properties['data-depth'] = depth;
 
       node.children.push({
         type: 'element',
         tagName: 'a',
         properties: {
+          className: ['heading-anchor'],
           'aria-hidden': 'true',
           tabindex: '-1',
           href: `#${slug}`,
         },
-        children: [{
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['icon-heading'],
-          },
-          children: [],
-        }],
+        children: [],
       });
 
       toc.push({
         value: slug,
         label: content,
-        depth: Number(node.tagName[1]) as any,
+        depth,
       });
     });
   };

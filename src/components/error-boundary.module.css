@@ -1,11 +1,14 @@
 .container {
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  @media not (--screen-md) {
-    flex-flow: column nowrap;
-    align-items: baseline;
-    gap: var(--space-s);
+  justify-content: center;
+  height: 100%;
+  max-width: var(--grid-max-width);
+  margin-inline: auto;
+  flex-flow: column nowrap;
+  align-items: baseline;
+  gap: var(--space-s);
+  @media not (--screen-xl) {
+    padding-inline: var(--grid-gutter);
   }
 }
 .info {
@@ -17,8 +20,12 @@
   font-weight: 300;
   font-size: var(--step-3);
 }
-.desc,
+.desc {
+  font-size: var(--step--1);
+}
 .detail {
+  font-family: var(--font-mono);
+  color: var(--gray-11);
   font-size: var(--step--1);
 }
 .button {

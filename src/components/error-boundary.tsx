@@ -8,7 +8,7 @@ export function ErrorBoundary({ error }: ErrorComponentProps) {
       <section className={s.info}>
         <h1 className={s.title}>Client Error</h1>
         <p className={s.desc}>Something went wrong...</p>
-        <pre className={s.detail}>{error as any}</pre>
+        <p className={s.detail}>{error instanceof Error && error.message}</p>
       </section>
       <Link to='/' className={s.button}>
         <ArrowLeft />

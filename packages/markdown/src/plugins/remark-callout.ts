@@ -1,7 +1,7 @@
 import type { Nodes, Root } from 'mdast';
 import { visit } from './utils/visit.ts';
 
-const calloutList = new Set(['info', 'warning', 'danger', 'success', 'summary']);
+const calloutList = new Set(['info', 'note', 'warning', 'danger', 'success', 'summary']);
 
 function plugin(tree: Root) {
   visit<Nodes>(tree, node => {

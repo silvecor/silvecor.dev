@@ -30,7 +30,8 @@ Integer molestie odio condimentum aliquam pulvinar. Duis suscipit nisi a quam ma
 
 ## Code
 
-```tsx
+```tsx {3,4} "MDXContent"
+// example.tsx
 const getMDXComponent = (code: string) => {
   // eslint-disable-next-line ts/no-implied-eval
   const fn = new Function(code);
@@ -46,9 +47,21 @@ export const MDXContent = ({
 };
 ```
 
+An array `[1, 2, 3]{:js}`
+
+> Blockquote
+>
+> Lorem ipsum dolor sit amet.
+
 :::note[This is title]
 Lorem ipsum dolor sit amet.
 :::
+
+:::danger[This is dangerous]
+consectetur adipiscing elit.
+:::
+
+## End
 
 Nulla facilisi. Morbi id aliquet libero. Suspendisse nunc ipsum, imperdiet quis viverra id, finibus vitae sem. Suspendisse lacinia convallis metus vitae pretium. Vestibulum id consequat ante. Nullam faucibus quam eget quam faucibus posuere. Aliquam dolor nisl, ullamcorper id sagittis in, convallis sit amet risus. Fusce bibendum lacinia magna, eget convallis erat placerat at.
 

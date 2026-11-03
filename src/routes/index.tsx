@@ -15,7 +15,7 @@ const actions = [
   { label: 'email', icon: Email, href: 'mailto:me@silvecor.dev' },
   { label: 'github', icon: GitHub, href: 'https://github.com/silvecor' },
   { label: 'twitter', icon: Twitter, href: 'https://x.com/silvecor3' },
-  { label: 'knowledge base', icon: Binary, href: 'https://ob.silvecor.dev' },
+  { label: 'knowledge base', icon: Binary, href: 'https://kb.silvecor.dev' },
 ];
 
 export const Route = createFileRoute('/')({

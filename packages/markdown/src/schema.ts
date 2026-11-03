@@ -1,8 +1,6 @@
 import rehypeMathML from '@daiji256/rehype-mathml';
-import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections';
-import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers';
-import rehypeExpressiveCode from 'rehype-expressive-code';
 import rehypeExternalLinks from 'rehype-external-links';
+import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeRaw from 'rehype-raw';
 import rehypeStringify from 'rehype-stringify';
 import remarkDirective from 'remark-directive';
@@ -32,7 +30,13 @@ export function markdown() {
       .use(remarkDirective)
       .use(remarkCallout)
       .use(remarkRehype, { allowDangerousHtml: true })
-      .use(rehypeRaw)
+      .use(rehypePrettyCode, {
+        theme: {
+          dark: 'github-dark',
+          light: 'github-light',
+        },
+        keepBackground: false,
+      })
       .use(rehypeCopyLinkedFiles, meta.config.output)
       .use(rehypeHeading, toc)
       .use(rehypeMathML)
@@ -43,15 +47,7 @@ export function markdown() {
           rel: ['nofollow', 'noopener', 'noreferrer'],
         },
       )
-      .use(
-        rehypeExpressiveCode,
-        {
-          // TODO
-          themes: ['ayu-light', 'kanagawa-dragon'],
-          plugins: [pluginCollapsibleSections(), pluginLineNumbers()],
-          useDarkModeMediaQuery: false,
-        },
-      )
+      .use(rehypeRaw)
       .use(rehypeStringify)
       .process({ value, path: meta.path });
     const html = file.toString();

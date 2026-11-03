@@ -1,6 +1,45 @@
 .prose {
   display: block;
   font-size: var(--step-0);
-  text-wrap: pretty;
-  overflow-wrap: break-word;
+  line-height: 1.8rem;
+
+  /* headings */
+  h1 {
+    font-size: var(--step-3);
+  }
+  h2 {
+    font-size: var(--step-2);
+  }
+  h3 {
+    font-size: var(--step-1);
+  }
+  :is(h4, h5, h6) {
+    font-size: var(--step-0);
+  }
+  :is(h1, h2, h3, h4, h5, h6) {
+    margin-block: var(--space-s-m) var(--space-2xs-xs);
+    font-weight: 400;
+    text-wrap: balance;
+
+    .heading-anchor {
+      color: var(--gray-11);
+      opacity: 0;
+      @media (hover: none) {
+        opacity: 1;
+      }
+      transition:
+        color 0.2s,
+        opacity 0.1s;
+      margin-left: var(--space-3xs);
+      &::before {
+        content: '#';
+      }
+      &:is(:hover, :focus-visible) {
+        color: var(--gray-12);
+      }
+    }
+    &:is(:hover, :focus-visible) .heading-anchor {
+      opacity: 1;
+    }
+  }
 }
