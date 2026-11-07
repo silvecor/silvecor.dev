@@ -41,11 +41,13 @@ function PostsComponent() {
         </div>
         <p className={s.meta}>
           <span className={s.head}>META</span>
+          <div className={s.separator} />
           <span>{formatDate(post.date)}</span>
-          <span>{post.meta.readingTime}min</span>
+          <span>{post.meta.readingTime} min</span>
         </p>
         <p className={s.description}>
           <span className={s.head}>DESC</span>
+          <div className={s.separator} />
           <span>{post.description}</span>
         </p>
       </section>

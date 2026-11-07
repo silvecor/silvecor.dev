@@ -40,7 +40,6 @@
   font-size: var(---step-0);
   display: flex;
   flex-flow: column nowrap;
-  border-top: 1px solid var(--gray-6);
   padding-top: var(--space-2xs);
 }
 .meta {
@@ -51,13 +50,17 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: end;
-  border-top: 1px solid var(--gray-6);
   padding-top: var(--space-2xs);
 }
 .head {
   font-size: var(--step--1);
   color: var(--gray-12);
   font-weight: 300;
+}
+.separator {
+  height: 1px;
+  width: 100%;
+  background-color: var(--gray-6);
 }
 
 .content {

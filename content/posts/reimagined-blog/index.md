@@ -30,7 +30,7 @@ Integer molestie odio condimentum aliquam pulvinar. Duis suscipit nisi a quam ma
 
 ## Code
 
-```tsx {3,4} "MDXContent"
+```tsx title="example.tsx" {3,4} "MDXContent"
 // example.tsx
 const getMDXComponent = (code: string) => {
   // eslint-disable-next-line ts/no-implied-eval
@@ -43,8 +43,27 @@ export const MDXContent = ({
   components,
 }: MDXContentProps) => {
   const Component = getMDXComponent(code);
-  return <Component components={{ ...sharedComponents, ...components }} />;
+  return <Component components={{ ...sharedComponents, ...components }} />; // really really looooong commmmmmment
 };
+```
+
+```tsx caption="A router example"
+import { createRouter } from '@tanstack/react-router';
+import { routeTree } from './routeTree.gen';
+
+export function getRouter() {
+  const router = createRouter({
+    routeTree,
+    defaultPreload: 'intent',
+    scrollToTopSelectors: ['#scrollable-area'],
+    scrollRestoration: true,
+    scrollRestorationBehavior: 'instant',
+    notFoundMode: 'root',
+  });
+
+  return router;
+}
+
 ```
 
 An array `[1, 2, 3]{:js}`
@@ -60,6 +79,50 @@ Lorem ipsum dolor sit amet.
 :::danger[This is dangerous]
 consectetur adipiscing elit.
 :::
+
+## Lists
+
+If you instead wrote the list in Markdown like this:
+
+1.  Bird
+1.  McHale
+1.  Parish
+
+or even:
+
+- Bird
+- McHale
+- Parish
+
+## Links
+
+Markdown supports two style of links: _inline_ and _reference_.
+
+In both styles, the link text is delimited by [square brackets].
+
+To create an inline link, use a set of regular parentheses immediately
+after the link text's closing square bracket. Inside the parentheses,
+put the URL where you want the link to point, along with an _optional_
+title for the link, surrounded in quotes. For example:
+
+This is [an example](http://example.com/) inline link.
+
+[This link](http://example.net/) has no title attribute.
+
+## Emphasis
+
+Markdown treats asterisks (`*`) and underscores (`_`) as indicators of
+emphasis. Text wrapped with one `*` or `_` will be wrapped with an
+HTML `<em>` tag; double `*`'s or `_`'s will be wrapped with an HTML
+`<strong>` tag. E.g., this input:
+
+_single asterisks_
+
+_single underscores_
+
+**double asterisks**
+
+**double underscores**
 
 ## End
 
