@@ -68,6 +68,12 @@ export function getRouter() {
 
 An array `[1, 2, 3]{:js}`
 
+Some math
+
+$$
+g(s)=\min_{m\le k-s-1}\sum_v\min(f(v, s), 1+f(v, m)),\ d_i\le s\le S
+$$
+
 > Blockquote
 >
 > Lorem ipsum dolor sit amet.
@@ -76,8 +82,12 @@ An array `[1, 2, 3]{:js}`
 Lorem ipsum dolor sit amet.
 :::
 
-:::danger[This is dangerous]
+:::warning[Warning]
 consectetur adipiscing elit.
+:::
+
+:::summary[So that's all]
+Aliquam at fermentum velit. Nullam ut mi enim. Suspendisse sit amet mi vulputate, aliquet odio ac, malesuada leo. Donec eros mauris, pretium sed vehicula at, luctus ut dolor. Curabitur et suscipit erat.
 :::
 
 ## Lists

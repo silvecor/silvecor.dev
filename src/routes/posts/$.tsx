@@ -1,7 +1,5 @@
-import { Toc } from '@ark-ui/react';
 import { createFileRoute, notFound } from '@tanstack/react-router';
 import clsx from 'clsx';
-import { useRef } from 'react';
 import { formatDate } from '@/lib/date';
 import { metadata } from '@/lib/metadata';
 import { getPostContent } from '@/lib/post-content';
@@ -26,7 +24,6 @@ export const Route = createFileRoute('/posts/$')({
 
 function PostsComponent() {
   const post = Route.useLoaderData();
-  const contentRef = useRef<HTMLElement | null>(null);
 
   return (
     <>
@@ -51,23 +48,22 @@ function PostsComponent() {
           <span>{post.description}</span>
         </p>
       </section>
-      <Toc.Root className={s.container} items={post.content.toc} scrollEl={() => contentRef.current}>
+      <section className={s.container}>
         {/* eslint-disable-next-line react/dom-no-dangerously-set-innerhtml */}
-        <Toc.Content className={clsx(s.content, 'prose')} ref={contentRef} data-pagefind-body dangerouslySetInnerHTML={{ __html: post.content.html }} />
-        <Toc.Nav className={s.tocContainer}>
+        <article className={clsx(s.content, 'prose')} data-pagefind-body dangerouslySetInnerHTML={{ __html: post.content.html }} />
+        <aside className={s.tocContainer}>
           <div className={s.tocContent}>
-            <Toc.Title>On this page</Toc.Title>
-            <Toc.List>
-              <Toc.Indicator />
+            <h3>On this page</h3>
+            <ul>
               {post.content.toc.map(item => (
-                <Toc.Item item={item} key={item.value}>
-                  <Toc.Link href={`#${item.value}`}>{item.label}</Toc.Link>
-                </Toc.Item>
+                <li key={item.value}>
+                  <a href={`#${item.value}`}>{item.label}</a>
+                </li>
               ))}
-            </Toc.List>
+            </ul>
           </div>
-        </Toc.Nav>
-      </Toc.Root>
+        </aside>
+      </section>
     </>
   );
 }

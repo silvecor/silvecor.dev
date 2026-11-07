@@ -51,7 +51,11 @@
   }
 
   :is(p, li) {
-    color: var(--gray-11);
+    color: color-mix(in oklab, var(--gray-11) 75%, var(--gray-12));
+  }
+
+  strong {
+    font-weight: 600;
   }
 
   a:not(.heading-anchor) {
@@ -63,6 +67,59 @@
     }
   }
 
+  :is(blockquote, .callout) {
+    background-color: var(--bg);
+    padding: var(--space-2xs) var(--space-s);
+    border-left: 1px solid var(--fg);
+    .callout-desc {
+      color: var(--fg);
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      gap: var(--space-3xs);
+    }
+    * {
+      color: var(--text);
+    }
+    .icon {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      background-color: var(--fg);
+      mask: no-repeat center / 100%;
+      mask-image: var(--icon);
+      transform: translateY(1px);
+    }
+  }
+
+  ol {
+    padding-left: var(--space-m);
+    list-style-type: decimal;
+  }
+  ul {
+    padding-left: var(--space-m);
+    list-style-type: disc;
+  }
+  li {
+    padding-left: var(--space-3xs);
+    margin-bottom: 0.25rem;
+    &::marker {
+      color: var(--gray-11);
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  code {
+    font-size: var(--step--1);
+    padding: 0.1em 0.2em;
+    background-color: var(--gray-2);
+    border: 1px solid var(--gray-6);
+  }
+  span[data-rehype-pretty-code-figure] code {
+    background-color: var(--gray-2) !important;
+  }
   figure[data-rehype-pretty-code-figure] {
     font-size: var(--step--1);
     border: 1px solid var(--gray-6);
@@ -82,6 +139,9 @@
       overflow: auto;
     }
     code {
+      background: none;
+      padding: 0;
+      border: none;
       counter-reset: line;
       > [data-line] {
         line-height: 1.6rem;
