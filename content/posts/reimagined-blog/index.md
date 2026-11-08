@@ -90,7 +90,42 @@ consectetur adipiscing elit.
 Aliquam at fermentum velit. Nullam ut mi enim. Suspendisse sit amet mi vulputate, aliquet odio ac, malesuada leo. Donec eros mauris, pretium sed vehicula at, luctus ut dolor. Curabitur et suscipit erat.
 :::
 
-## Lists
+## Syntax
+
+### Blockquotes
+
+Markdown uses email-style `>` characters for blockquoting. If you're
+familiar with quoting passages of text in an email message, then you
+know how to create a blockquote in Markdown. It looks best if you hard
+wrap the text and put a `>` before every line:
+
+> This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+> consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
+> Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
+>
+> Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
+> id sem consectetuer libero luctus adipiscing.
+
+Markdown allows you to be lazy and only put the `>` before the first
+line of a hard-wrapped paragraph:
+
+> This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+> consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
+> Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
+
+> Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
+> id sem consectetuer libero luctus adipiscing.
+
+Blockquotes can be nested (i.e. a blockquote-in-a-blockquote) by
+adding additional levels of `>`:
+
+> This is the first level of quoting.
+>
+> > This is nested blockquote.
+>
+> Back to the first level.
+
+### Lists
 
 If you instead wrote the list in Markdown like this:
 
@@ -104,7 +139,7 @@ or even:
 - McHale
 - Parish
 
-## Links
+### Links
 
 Markdown supports two style of links: _inline_ and _reference_.
 
@@ -119,7 +154,7 @@ This is [an example](http://example.com/) inline link.
 
 [This link](http://example.net/) has no title attribute.
 
-## Emphasis
+### Emphasis
 
 Markdown treats asterisks (`*`) and underscores (`_`) as indicators of
 emphasis. Text wrapped with one `*` or `_` will be wrapped with an
@@ -134,7 +169,39 @@ _single underscores_
 
 **double underscores**
 
-## End
+### GFM
+
+#### Autolink literals
+
+www.example.com, https://example.com, and contact@example.com.
+
+#### Footnote
+
+A note[^1]
+
+And here's another note[^2]
+
+[^1]: Big note.
+
+[^2]: Really looong Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium at enim posuere fermentum. Aliquam at fermentum velit.
+
+#### Strikethrough
+
+~one~ or ~~two~~ tildes.
+
+#### Table
+
+| a              | b              |           c |        d        |
+| -------------- | :------------- | ----------: | :-------------: |
+| Lorem ipsum    | dolor sit amet | consectetur | adipiscing elit |
+| Nulla bibendum | auctor         |       lacus | pretium euismod |
+
+#### Tasklist
+
+- [ ] to do
+- [x] done
+
+#### End
 
 Nulla facilisi. Morbi id aliquet libero. Suspendisse nunc ipsum, imperdiet quis viverra id, finibus vitae sem. Suspendisse lacinia convallis metus vitae pretium. Vestibulum id consequat ante. Nullam faucibus quam eget quam faucibus posuere. Aliquam dolor nisl, ullamcorper id sagittis in, convallis sit amet risus. Fusce bibendum lacinia magna, eget convallis erat placerat at.
 

@@ -63,6 +63,9 @@ function PostsComponent() {
             </ul>
           </div>
         </aside>
+        <div className={s.footer}>
+          <h2 className={s.footerTitle}>{post.title}</h2>
+        </div>
       </section>
     </>
   );
