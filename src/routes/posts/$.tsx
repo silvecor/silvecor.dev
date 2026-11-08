@@ -1,5 +1,10 @@
+import { Progress } from '@ark-ui/react';
 import { createFileRoute, notFound } from '@tanstack/react-router';
 import clsx from 'clsx';
+import { clamp, round, throttle } from 'es-toolkit';
+import { useEffect, useRef, useState } from 'react';
+import Copyright from '~icons/ph/copyright';
+import { TextLink } from '@/components/text-link';
 import { formatDate } from '@/lib/date';
 import { metadata } from '@/lib/metadata';
 import { getPostContent } from '@/lib/post-content';
@@ -22,8 +27,76 @@ export const Route = createFileRoute('/posts/$')({
   preload: false,
 });
 
+const TOC_EPS = 20;
+
 function PostsComponent() {
   const post = Route.useLoaderData();
+
+  const [progress, setProgress] = useState<number>(0);
+  const articleRef = useRef<HTMLElement>(null);
+  const headingsRef = useRef<(HTMLElement | null)[]>([]);
+  const tocListRef = useRef<HTMLUListElement>(null);
+
+  useEffect(() => {
+    for (let i = 0; i < post.content.toc.length; ++i) {
+      headingsRef.current[i] = document.querySelector(`#${post.content.toc[i]!.value}`);
+    }
+
+    const handleScroll = throttle(() => {
+      const viewportHeight = window.innerHeight;
+      const scrollableHeight = (articleRef.current?.scrollHeight ?? 0) - viewportHeight;
+      const articleRect = articleRef.current?.getBoundingClientRect();
+      const scrollProgress = -(articleRect?.top ?? 0);
+
+      if (scrollableHeight <= 0 || scrollProgress <= 0) {
+        setProgress(0);
+      } else {
+        setProgress(round(clamp((scrollProgress / scrollableHeight) * 100, 0, 100)));
+      }
+
+      for (let i = 0; i < post.content.toc.length; ++i) {
+        // const currentTocItem = post.content.toc[i]!;
+        const currentHeading = headingsRef.current[i];
+        const currentBottom = currentHeading?.getBoundingClientRect().bottom;
+
+        // Highlight the whole chain from the root
+        // const nextIndex = post.content.toc.findIndex((el, idx) => el.depth <= currentTocItem.depth && idx > i);
+        // const nextHeading = nextIndex === -1 ? undefined : headingsRef.current[nextIndex];
+        // const nextTop
+        //   = nextIndex === -1
+        //     ? articleRect?.bottom
+        //     : nextHeading?.getBoundingClientRect().top;
+
+        const nextHeading = headingsRef.current[i + 1];
+        const nextTop
+          = i + 1 === post.content.toc.length
+            ? articleRect?.bottom
+            : nextHeading?.getBoundingClientRect().top;
+
+        const currentTocEl = tocListRef.current?.children[i];
+
+        if (currentBottom && nextTop && currentBottom <= viewportHeight + TOC_EPS && nextTop >= TOC_EPS) {
+          currentTocEl?.setAttribute('data-state', 'active');
+        } else if (nextTop && nextTop <= TOC_EPS) {
+          currentTocEl?.setAttribute('data-state', 'read');
+        } else {
+          currentTocEl?.setAttribute('data-state', 'unread');
+        }
+      }
+    }, 200);
+
+    const controller = new AbortController();
+    window.addEventListener('scroll', handleScroll, {
+      passive: true,
+      signal: controller.signal,
+    });
+    window.addEventListener('resize', handleScroll, {
+      signal: controller.signal,
+    });
+    return () => {
+      controller.abort();
+    };
+  }, [post.content.toc]);
 
   return (
     <>
@@ -39,7 +112,7 @@ function PostsComponent() {
         <p className={s.meta}>
           <span className={s.head}>META</span>
           <div className={s.separator} />
-          <span>{formatDate(post.date)}</span>
+          <time dateTime={post.date}>{formatDate(post.date)}</time>
           <span>{post.meta.readingTime} min</span>
         </p>
         <p className={s.description}>
@@ -50,13 +123,18 @@ function PostsComponent() {
       </section>
       <section className={s.container}>
         {/* eslint-disable-next-line react/dom-no-dangerously-set-innerhtml */}
-        <article className={clsx(s.content, 'prose')} data-pagefind-body dangerouslySetInnerHTML={{ __html: post.content.html }} />
+        <article className={clsx(s.content, 'prose')} data-pagefind-body dangerouslySetInnerHTML={{ __html: post.content.html }} ref={articleRef} />
         <aside className={s.tocContainer}>
           <div className={s.tocContent}>
-            <h3>On this page</h3>
-            <ul>
+            <h2 className={s.tocTitle}>On this page</h2>
+            <Progress.Root defaultValue={0} value={progress}>
+              <Progress.Track>
+                <Progress.Range />
+              </Progress.Track>
+            </Progress.Root>
+            <ul ref={tocListRef}>
               {post.content.toc.map(item => (
-                <li key={item.value}>
+                <li key={item.value} className={s.tocItem} data-depth={item.depth}>
                   <a href={`#${item.value}`}>{item.label}</a>
                 </li>
               ))}
@@ -64,7 +142,11 @@ function PostsComponent() {
           </div>
         </aside>
         <div className={s.footer}>
-          <h2 className={s.footerTitle}>{post.title}</h2>
+          <div className={s.footerHead}>
+            <h2 className={s.footerTitle}>{post.title}</h2>
+            <time className={s.footerDate} dateTime={post.date}>{formatDate(post.date)}</time>
+          </div>
+          <div className={s.copyright}><Copyright /> <TextLink href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>CC BY-NC-SA 4.0</TextLink></div>
         </div>
       </section>
     </>

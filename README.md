@@ -17,8 +17,8 @@ The project is now running on port 5173.
 
 ## License
 
-![](./docs/agplv3.png) ![](./docs/cc-by-nc-nd.png)
+![](./docs/agplv3.png) ![](./docs/cc-by-nc-sa.png)
 
-Released under the [GNU Affero General Public License](./LICENSE) (for the code), and [CC BY-NC-ND 4.0](./LICENSE_CONTENT) (for articles and images).
+Released under the [GNU Affero General Public License](./LICENSE) (for the code), and [CC BY-NC-SA 4.0](./LICENSE_CONTENT) (for articles and images).
 
 Copyright © 2026 [silvecor](https://silvecor.dev). All rights reserved.
