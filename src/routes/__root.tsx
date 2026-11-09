@@ -9,6 +9,7 @@ import { themeScript } from '@/lib/theme';
 
 import s from './__root.module.css';
 import '@/styles/index.css';
+import 'temml/dist/Temml-Local.css';
 
 export const Route = createRootRoute({
   head: () => ({

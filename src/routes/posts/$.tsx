@@ -1,8 +1,9 @@
-import { Progress } from '@ark-ui/react';
+import { Collapsible, Progress } from '@ark-ui/react';
 import { createFileRoute, notFound } from '@tanstack/react-router';
 import clsx from 'clsx';
 import { clamp, round, throttle } from 'es-toolkit';
 import { useEffect, useRef, useState } from 'react';
+import CaretRight from '~icons/ph/caret-right';
 import Copyright from '~icons/ph/copyright';
 import { TextLink } from '@/components/text-link';
 import { formatDate } from '@/lib/date';
@@ -33,6 +34,7 @@ function PostsComponent() {
   const post = Route.useLoaderData();
 
   const [progress, setProgress] = useState<number>(0);
+  const [heading, setHeading] = useState<string>(post.content.toc[0]?.label ?? '');
   const articleRef = useRef<HTMLElement>(null);
   const headingsRef = useRef<(HTMLElement | null)[]>([]);
   const tocListRef = useRef<HTMLUListElement>(null);
@@ -54,6 +56,7 @@ function PostsComponent() {
         setProgress(round(clamp((scrollProgress / scrollableHeight) * 100, 0, 100)));
       }
 
+      let finalHeading = '';
       for (let i = 0; i < post.content.toc.length; ++i) {
         // const currentTocItem = post.content.toc[i]!;
         const currentHeading = headingsRef.current[i];
@@ -77,13 +80,15 @@ function PostsComponent() {
 
         if (currentBottom && nextTop && currentBottom <= viewportHeight + TOC_EPS && nextTop >= TOC_EPS) {
           currentTocEl?.setAttribute('data-state', 'active');
+          finalHeading = post.content.toc[i]?.label ?? '';
         } else if (nextTop && nextTop <= TOC_EPS) {
           currentTocEl?.setAttribute('data-state', 'read');
         } else {
           currentTocEl?.setAttribute('data-state', 'unread');
         }
       }
-    }, 200);
+      setHeading(finalHeading);
+    }, 100);
 
     const controller = new AbortController();
     window.addEventListener('scroll', handleScroll, {
@@ -100,7 +105,7 @@ function PostsComponent() {
 
   return (
     <>
-      <section className={clsx(s.container, s.titleContainer)}>
+      <section className={s.titleContainer}>
         <div className={s.titleContent}>
           <p className={s.tags}>
             {post.tags?.map(tag => (
@@ -108,6 +113,7 @@ function PostsComponent() {
             ))}
           </p>
           <h1 className={s.title} data-pagefind-meta='title'>{post.title}</h1>
+          <span className={s.titleDate}>{formatDate(post.date)}</span>
         </div>
         <p className={s.meta}>
           <span className={s.head}>META</span>
@@ -124,23 +130,35 @@ function PostsComponent() {
       <section className={s.container}>
         {/* eslint-disable-next-line react/dom-no-dangerously-set-innerhtml */}
         <article className={clsx(s.content, 'prose')} data-pagefind-body dangerouslySetInnerHTML={{ __html: post.content.html }} ref={articleRef} />
-        <aside className={s.tocContainer}>
-          <div className={s.tocContent}>
-            <h2 className={s.tocTitle}>On this page</h2>
-            <Progress.Root defaultValue={0} value={progress}>
-              <Progress.Track>
-                <Progress.Range />
-              </Progress.Track>
-            </Progress.Root>
-            <ul ref={tocListRef}>
-              {post.content.toc.map(item => (
-                <li key={item.value} className={s.tocItem} data-depth={item.depth}>
-                  <a href={`#${item.value}`}>{item.label}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </aside>
+        <Collapsible.Root asChild>
+          <Progress.Root defaultValue={0} value={progress} asChild>
+            <aside className={s.tocContainer}>
+              <Collapsible.Trigger className={s.tocTrigger}>
+                <Progress.Circle className={s.circle}>
+                  <Progress.CircleTrack className={s.circleTrack} />
+                  <Progress.CircleRange className={s.circleRange} />
+                </Progress.Circle>
+                <span>{heading}</span>
+                <Collapsible.Indicator className={s.tocIndicator}>
+                  <CaretRight />
+                </Collapsible.Indicator>
+              </Collapsible.Trigger>
+              <div className={s.tocContent}>
+                <h2 className={s.tocTitle}>On this page</h2>
+                <Progress.Track className={s.progressTrack}>
+                  <Progress.Range className={s.progressRange} />
+                </Progress.Track>
+                <ul ref={tocListRef}>
+                  {post.content.toc.map(item => (
+                    <li key={item.value} className={s.tocItem} data-depth={item.depth}>
+                      <a href={`#${item.value}`}>{item.label}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </aside>
+          </Progress.Root>
+        </Collapsible.Root>
         <div className={s.footer}>
           <div className={s.footerHead}>
             <h2 className={s.footerTitle}>{post.title}</h2>

@@ -9,11 +9,13 @@
   min-height: 100vh;
   background-color: var(--gray-a1);
   backdrop-filter: blur(var(--blur-s));
-  &[data-state='open'] {
-    animation: fade-in 0.1s ease-out;
-  }
-  &[data-state='closed'] {
-    animation: fade-out 0.1s ease-in;
+  &:global {
+    &[data-state='open'] {
+      animation: fade-in 0.1s ease-out;
+    }
+    &[data-state='closed'] {
+      animation: fade-out 0.1s ease-in;
+    }
   }
 }
 .viewport {
@@ -32,11 +34,13 @@
   width: min(35rem, calc(0.75 * var(--grid-max-width)));
   box-shadow: 0 0 0 1px var(--gray-6);
   background-color: var(--gray-1);
-  &[data-state='open'] {
-    animation: y-fade-in 0.1s ease-out;
-  }
-  &[data-state='closed'] {
-    animation: y-fade-out 0.1s ease-in;
+  &:global {
+    &[data-state='open'] {
+      animation: y-fade-in 0.1s ease-out;
+    }
+    &[data-state='closed'] {
+      animation: y-fade-out 0.1s ease-in;
+    }
   }
   & > section:not(:last-child) {
     border-bottom: 1px solid var(--gray-6);
@@ -90,42 +94,5 @@
   .target {
     color: var(--blue-11);
     text-decoration: underline var(--blue-6) solid 1px;
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-@keyframes y-fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(-0.25rem);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-@keyframes y-fade-out {
-  from {
-    opacity: 1;
-    transform: none;
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-0.25rem);
   }
 }

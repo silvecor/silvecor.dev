@@ -9,7 +9,12 @@
 }
 
 .website-info {
-  grid-column: 1 / 5;
+  @media (--screen-xl) {
+    grid-column: 1 / 5;
+  }
+  @media not (--screen-xl) {
+    grid-column: 1 / 13;
+  }
   display: flex;
   flex-flow: column nowrap;
   align-items: baseline;

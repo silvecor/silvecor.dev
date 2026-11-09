@@ -11,6 +11,7 @@ import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
 import { rehypeCopyLinkedFiles, s } from 'velite';
 import { rehypeHeading, type TocItem } from './plugins/rehype-heading.ts';
+import { rehypeMathMLWrap } from './plugins/rehype-mathml-wrap.ts';
 import { remarkCallout } from './plugins/remark-callout.ts';
 
 interface Result {
@@ -40,6 +41,7 @@ export function markdown() {
       .use(rehypeCopyLinkedFiles, meta.config.output)
       .use(rehypeHeading, toc)
       .use(rehypeMathML)
+      .use(rehypeMathMLWrap)
       .use(
         rehypeExternalLinks,
         {

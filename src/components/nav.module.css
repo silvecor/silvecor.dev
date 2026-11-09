@@ -50,3 +50,14 @@
 .content-separator {
   width: auto;
 }
+
+@media (--screen-sm) {
+  .mobile {
+    display: none;
+  }
+}
+@media not (--screen-sm) {
+  .desktop {
+    display: none;
+  }
+}
