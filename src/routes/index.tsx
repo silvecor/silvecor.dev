@@ -4,7 +4,7 @@ import ArrowUpRight from '~icons/ph/arrow-up-right';
 import Binary from '~icons/ph/binary';
 import Email from '~icons/ph/envelope-simple';
 import GitHub from '~icons/ph/github-logo';
-import Lightbulb from '~icons/ph/lightbulb-light';
+import Earth from '~icons/ph/globe-hemisphere-east-duotone';
 import Twitter from '~icons/ph/twitter-logo';
 import { Post } from '@/components/post';
 import { metadata } from '@/lib/metadata';
@@ -35,7 +35,6 @@ function HomeComponent() {
         <div className={s.intro}>
           <h1 className={s.name}>Silver Chloride</h1>
           <p className={s.handle}>@silvecor</p>
-          <p className={s.tagline}>I make cool apps and fool snacks.</p>
         </div>
         <div className={s.actionsContainer}>
           <div className={s.actions}>
@@ -50,7 +49,7 @@ function HomeComponent() {
           </div>
         </div>
         <div className={s.descContainer}>
-          <p className={s.descHeader}><Lightbulb />&nbsp;Thoughtful</p>
+          <p className={s.descHeader}>someone on the&nbsp;<Earth />, also a</p>
           <p><span>Digital</span>&nbsp;Designer</p>
           <p><span>Front-end OSS</span>&nbsp;Developer</p>
         </div>

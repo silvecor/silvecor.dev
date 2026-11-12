@@ -1,4 +1,4 @@
-import { posts } from 'collections';
+import { posts, projects } from 'collections';
 import { sortBy } from 'es-toolkit';
 
 export function getPosts() {
@@ -9,4 +9,8 @@ export function getSortedPosts() {
 }
 export function getRecentPosts(count: number = 3) {
   return getSortedPosts().slice(0, count);
+}
+
+export function getProjects() {
+  return sortBy(projects, ['order']);
 }

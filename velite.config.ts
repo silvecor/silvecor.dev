@@ -29,6 +29,7 @@ const projects = defineCollection({
   pattern: 'projects/*.yaml',
   schema: s.object({
     name: s.string(),
+    order: s.number(),
     description: s.string(),
     link: s.string().url(),
     tags: s.array(s.string()).optional(),

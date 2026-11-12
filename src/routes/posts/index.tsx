@@ -30,7 +30,7 @@ function RouteComponent() {
       <ul className={s.postsContainer}>
         {posts.map((post, i) => (
           <Fragment key={post.title}>
-            {!!yearIndex[i] && <h3 className={s.postsSubheading}>Year {yearIndex[i] % 100}</h3>}
+            {!!yearIndex[i] && <li><h3 className={s.postsSubheading}>Year {yearIndex[i] % 100}</h3></li>}
             <Post post={post} />
           </Fragment>
         ))}

@@ -1,7 +1,7 @@
 .prose {
   display: block;
   font-size: var(--step-0);
-  line-height: 1.8rem;
+  line-height: calc(1em + 0.75rem);
   color: var(--gray-12);
 
   .math-display {
@@ -18,11 +18,8 @@
       scroll-margin-top: calc(var(--header-height) * 2 + var(--space-s));
     }
   }
-  > * {
-    margin-bottom: 0.875rem;
-  }
-  > :last-child {
-    margin-bottom: 0;
+  > *:not(:last-child) {
+    margin-bottom: var(--space-xs);
   }
 
   h1 {
@@ -42,7 +39,7 @@
     margin-top: var(--space-s);
   }
   :is(h1, h2, h3, h4, h5, h6) {
-    margin-bottom: var(--space-2xs-xs);
+    margin-bottom: var(--space-s);
     font-weight: 400;
     text-wrap: balance;
 
@@ -69,11 +66,16 @@
   }
 
   :is(p, li, td) {
-    color: color-mix(in oklab, var(--gray-11) 80%, var(--gray-12));
+    color: color-mix(in oklab, var(--gray-11) 75%, var(--gray-12));
   }
 
+  .dim {
+    color: var(--gray-11);
+    opacity: 75%;
+  }
   strong {
-    font-weight: 600;
+    color: var(--gray-12);
+    font-weight: 400;
   }
 
   a:not(.heading-anchor) {
@@ -85,10 +87,27 @@
     }
   }
 
+  :is(img, video) {
+    @media (--screen-lg) {
+      max-width: 90%;
+    }
+    @media (--screen-sm) and (not (--screen-lg)) {
+      max-width: 95%;
+    }
+    @media not (--screen-sm) {
+      max-width: 100%;
+    }
+    height: auto;
+    margin-inline: auto;
+  }
+
   :is(blockquote, .callout) {
     background-color: var(--bg);
     padding: var(--space-2xs) var(--space-s);
     border-left: 1px solid var(--fg);
+    > *:not(:last-child) {
+      margin-bottom: var(--space-3xs);
+    }
     .callout-desc {
       color: var(--fg);
       display: flex;
@@ -139,8 +158,9 @@
   }
 
   code {
+    font-family: var(--font-mono);
     font-size: var(--step--1);
-    font-weight: 300;
+    font-weight: 400;
     padding: 0.1em 0.2em;
     background-color: var(--gray-2);
     border: 1px solid var(--gray-6);
@@ -213,6 +233,7 @@
   }
 
   .footnotes {
+    margin-top: var(--space-m);
     border-top: 1px solid var(--gray-6);
     color: var(--gray-11);
     font-size: var(--step--1);

@@ -12,7 +12,7 @@ export function NotFound() {
       </section>
       <Link to='/' className={s.button}>
         <ArrowLeft />
-        Go back home
+        Home
       </Link>
     </div>
   );
