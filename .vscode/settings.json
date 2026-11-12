@@ -1,5 +1,6 @@
 {
   "prettier.enable": false,
+  "oxc.enable": false,
   "editor.formatOnSave": false,
 
   "editor.codeActionsOnSave": {
@@ -10,6 +11,8 @@
   "eslint.rules.customizations": [
     { "rule": "style/*", "severity": "off", "fixable": true },
     { "rule": "format/*", "severity": "off", "fixable": true },
+    { "rule": "perfectionist/*", "severity": "off", "fixable": true },
+    { "rule": "json/sort-*", "severity": "off", "fixable": true },
     { "rule": "*-indent", "severity": "off", "fixable": true },
     { "rule": "*-spacing", "severity": "off", "fixable": true },
     { "rule": "*-spaces", "severity": "off", "fixable": true },
@@ -38,6 +41,5 @@
     "scss",
     "pcss",
     "postcss"
-  ],
-  "typescript.tsdk": "node_modules/typescript/lib"
+  ]
 }

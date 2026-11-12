@@ -1,0 +1,4 @@
+name: eslint-config-silvecor
+order: 20
+description: ESLint config for silvecor's projects
+link: https://github.com/silvecor/eslint-config-silvecor

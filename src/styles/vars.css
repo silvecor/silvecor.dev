@@ -1,0 +1,113 @@
+/* Colors */
+@import '@radix-ui/colors/gray.css';
+@import '@radix-ui/colors/gray-dark.css';
+@import '@radix-ui/colors/gray-alpha.css';
+@import '@radix-ui/colors/gray-dark-alpha.css';
+@import '@radix-ui/colors/blue.css';
+@import '@radix-ui/colors/blue-dark.css';
+
+/* Breakpoints */
+@custom-media --screen-sm (width >= 40rem);
+@custom-media --screen-md (width >= 48rem);
+@custom-media --screen-lg (width >= 64rem);
+@custom-media --screen-xl (width >= 80rem);
+@custom-media --screen-2xl (width >= 96rem);
+
+:root {
+  /* Fonts */
+  --font-emoji-fallback: 'Apple Color Emoji', 'Noto Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --font-sans:
+    'IBM Plex Sans', 'Helvetica Neue', 'Noto Sans SC', 'Noto Sans JP', -apple-system, ui-sans-serif, system-ui, sans-serif, var(--font-emoji-fallback);
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace, Menlo, SFMono, Consolas, var(--font-emoji-fallback);
+
+  /* Blur */
+  --blur-xs: 1px;
+  --blur-s: 4px;
+  --blur-m: 10px;
+  --blur-l: 16px;
+  --blur-xl: 24px;
+
+  /* Radius */
+  --radius-xs: 0.125rem;
+  --radius-s: 0.25rem;
+  --radius-m: 0.5rem;
+  --radius-l: 1rem;
+  --radius-xl: 1.5rem;
+
+  /* Letter spacing */
+  --tracking-tight: -0.025em;
+  --tracking-wide: 0.0125em;
+  --tracking-wider: 0.025em;
+
+  /* 360,16,1.125,1240,18,1.25 */
+  /* Typography */
+  --step--1: clamp(0.8889rem, 0.8843rem + 0.0202vw, 0.9rem);
+  --step-0: clamp(1rem, 0.9489rem + 0.2273vw, 1.125rem);
+  --step-1: clamp(1.125rem, 1.0099rem + 0.5114vw, 1.4063rem);
+  --step-2: clamp(1.2656rem, 1.0643rem + 0.8949vw, 1.7578rem);
+  --step-3: clamp(1.4238rem, 1.1074rem + 1.4063vw, 2.1973rem);
+  --step-4: clamp(1.6018rem, 1.1335rem + 2.0814vw, 2.7466rem);
+  /* Spacing */
+  --space-3xs: clamp(0.25rem, 0.2244rem + 0.1136vw, 0.3125rem);
+  --space-2xs: clamp(0.5rem, 0.4744rem + 0.1136vw, 0.5625rem);
+  --space-xs: clamp(0.75rem, 0.6989rem + 0.2273vw, 0.875rem);
+  --space-s: clamp(1rem, 0.9489rem + 0.2273vw, 1.125rem);
+  --space-m: clamp(1.5rem, 1.4233rem + 0.3409vw, 1.6875rem);
+  --space-l: clamp(2rem, 1.8977rem + 0.4545vw, 2.25rem);
+  --space-xl: clamp(3rem, 2.8466rem + 0.6818vw, 3.375rem);
+  --space-2xl: clamp(4rem, 3.7955rem + 0.9091vw, 4.5rem);
+  --space-3xl: clamp(6rem, 5.6932rem + 1.3636vw, 6.75rem);
+  --space-3xs-2xs: clamp(0.25rem, 0.1222rem + 0.5682vw, 0.5625rem);
+  --space-2xs-xs: clamp(0.5rem, 0.3466rem + 0.6818vw, 0.875rem);
+  --space-xs-s: clamp(0.75rem, 0.5966rem + 0.6818vw, 1.125rem);
+  --space-s-m: clamp(1rem, 0.7188rem + 1.25vw, 1.6875rem);
+  --space-m-l: clamp(1.5rem, 1.1932rem + 1.3636vw, 2.25rem);
+  --space-l-xl: clamp(2rem, 1.4375rem + 2.5vw, 3.375rem);
+  --space-xl-2xl: clamp(3rem, 2.3864rem + 2.7273vw, 4.5rem);
+  --space-2xl-3xl: clamp(4rem, 2.875rem + 5vw, 6.75rem);
+  --space-s-l: clamp(1rem, 0.4886rem + 2.2727vw, 2.25rem);
+  /* Grid */
+  --grid-max-width: 69.75rem;
+  --grid-gutter: var(--space-s-l, clamp(1rem, 0.4048rem + 2.6455vw, 2.25rem));
+  --grid-columns: 12;
+
+  /* Layout */
+  --header-height: 2.5rem;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes y-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-0.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes y-fade-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-0.25rem);
+  }
+}

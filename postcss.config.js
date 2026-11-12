@@ -1,11 +1,11 @@
 export default {
   plugins: {
-    'postcss-nesting': {},
-    '@unocss/postcss': {
-      content: [
-        './src/**/*.{html,js,ts,jsx,tsx,css}',
-        './content/**/*.{md,mdx}',
+    '@csstools/postcss-global-data': {
+      files: [
+        './src/styles/vars.css',
       ],
     },
+    'postcss-preset-env': {},
+    autoprefixer: {},
   },
 };

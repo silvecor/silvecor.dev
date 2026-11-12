@@ -1,0 +1,72 @@
+body {
+  position: relative;
+  height: 100vh;
+  font-family: var(--font-sans);
+  background: var(--gray-1);
+  color: var(--gray-12);
+  font-weight: 400;
+  scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  overscroll-behavior: contain;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.sr-only,
+[data-sr-only] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+[hidden] {
+  display: none;
+}
+
+.light {
+  color-scheme: light;
+  [data-theme-light] {
+    display: block;
+  }
+  [data-theme-dark] {
+    display: none;
+  }
+}
+.dark {
+  color-scheme: dark;
+  [data-theme-dark] {
+    display: block;
+  }
+  [data-theme-light] {
+    display: none;
+  }
+}
+
+::selection {
+  background-color: var(--gray-a5);
+}
+
+* {
+  letter-spacing: -0.005em;
+  -webkit-tap-highlight-color: transparent;
+}
+
+p {
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}

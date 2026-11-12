@@ -1,0 +1,17 @@
+'$schema' = './node_modules/wrangler/config-schema.json'
+name = 'silvecor-dev'
+main = '@tanstack/react-start/server-entry'
+compatibility_date = '2026-11-12'
+compatibility_flags = [ 'nodejs_compat' ]
+
+upload_source_maps = true
+
+[assets]
+binding = 'ASSETS'
+directory = './dist/client'
+html_handling = 'drop-trailing-slash'
+
+[observability]
+enabled = true
+
+[vars]

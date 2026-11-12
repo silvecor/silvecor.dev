@@ -1,0 +1,11 @@
+output:
+  - summary
+  - execution
+  - skips
+
+commit-msg:
+  jobs:
+    - run: pnpm exec commitlint --edit {1}
+pre-commit:
+  jobs:
+    - run: pnpm exec lint-staged

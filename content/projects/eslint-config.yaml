@@ -1,7 +1,0 @@
-name: '@hellolin/eslint-config'
-description: Opinionated personal ESLint config for frontend developers.
-link: https://github.com/VLTHellolin/eslint-config
-tags:
-  - eslint
-  - typescript
-  - react

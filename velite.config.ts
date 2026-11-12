@@ -1,66 +1,42 @@
-import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections';
-import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers';
-import rehypeExpressiveCode, { type RehypeExpressiveCodeOptions } from 'rehype-expressive-code';
-import rehypeExternalLinks from 'rehype-external-links';
-import rehypeKatex from 'rehype-katex';
-import rehypePrettyCode, { type Options as RehypePrettyCodeOptions } from 'rehype-pretty-code';
-import rehypeSlug from 'rehype-slug';
-import remarkEmoji from 'remark-emoji';
-import remarkMath from 'remark-math';
-import { defineConfig } from 'velite';
+import { mkdir, writeFile } from 'node:fs/promises';
+import { markdown } from '@silvecor/markdown';
+import { defineCollection, defineConfig, s } from 'velite';
 
-import { styleOverrides } from '@/styles/expressiveCode';
-import { collections } from './content.config';
+const posts = defineCollection({
+  name: 'posts',
+  pattern: 'posts/**/*.md',
+  schema: s.object({
+    title: s.string(),
+    date: s.isodate(),
+    description: s.string(),
+    banner: s.object({
+      light: s.image().optional(),
+      dark: s.image().optional(),
+    }).optional(),
+    tags: s.array(s.string()).optional(),
+    content: markdown(),
+    slug: s.path().transform(path => path.split('/').pop()),
+    meta: s.metadata(),
+  }).transform(async ({ content, ...rest }) => {
+    await mkdir('public/content/posts', { recursive: true });
+    await writeFile(`public/content/posts/${rest.slug}.json`, JSON.stringify({ content }), { flag: 'w' });
+    return rest;
+  }),
+});
+
+const projects = defineCollection({
+  name: 'projects',
+  pattern: 'projects/*.yaml',
+  schema: s.object({
+    name: s.string(),
+    order: s.number(),
+    description: s.string(),
+    link: s.string().url(),
+    tags: s.array(s.string()).optional(),
+  }),
+});
 
 export default defineConfig({
   root: 'content',
-  collections,
-  mdx: {
-    gfm: true,
-    remarkPlugins: [
-      remarkMath, remarkEmoji,
-    ],
-    rehypePlugins: [
-      rehypeSlug,
-      [
-        rehypeKatex,
-        { strict: true },
-      ],
-      [
-        rehypeExternalLinks,
-        {
-          target: '_blank',
-          rel: ['nofollow', 'noopener', 'noreferrer'],
-        },
-      ],
-      [
-        rehypeExpressiveCode,
-        {
-          themes: ['vitesse-light', 'vitesse-dark'],
-          plugins: [pluginCollapsibleSections(), pluginLineNumbers()],
-          useDarkModeMediaQuery: false,
-          themeCssSelector: theme => `[data-theme="${theme.name.split('-')[1]}"]`,
-          styleOverrides,
-          defaultProps: {
-            showLineNumbers: true,
-            wrap: true,
-            overridesByLang: {
-              'ansi,asciidoc,bat,bash,batch,cmd,console,plain,powershell,ps,ps1,sh,shell,shellscript,shellsession,text,txt': {
-                showLineNumbers: false,
-              },
-            },
-          },
-        } satisfies RehypeExpressiveCodeOptions,
-      ],
-      [
-        rehypePrettyCode,
-        {
-          theme: {
-            light: 'vitesse-light',
-            dark: 'vitesse-dark',
-          },
-        } satisfies RehypePrettyCodeOptions,
-      ],
-    ],
-  },
+  collections: { posts, projects },
 });
