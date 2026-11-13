@@ -1,7 +1,7 @@
 import { Dialog, Portal } from '@ark-ui/react';
-import { Link } from '@tanstack/react-router';
 import clsx from 'clsx';
 import { Fragment, type ReactNode, useDeferredValue, useEffect, useState } from 'react';
+import { Link } from 'react-router';
 import SearchIcon from '~icons/ph/magnifying-glass';
 import s from './search.module.css';
 

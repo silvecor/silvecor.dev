@@ -1,6 +1,6 @@
 import type { ComponentPropsWithRef } from 'react';
-import { Link } from '@tanstack/react-router';
 import clsx from 'clsx';
+import { Link } from 'react-router';
 import s from './text-link.module.css';
 
 export interface TextLinkProps extends ComponentPropsWithRef<'a'> {

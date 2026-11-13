@@ -1,4 +1,3 @@
-import pluginRouter from '@tanstack/eslint-plugin-router';
 import silvecor from 'eslint-config-silvecor';
 
 export default silvecor({
@@ -19,7 +18,7 @@ export default silvecor({
 }).override('silvecor/typescript/type-aware', {
   rules: {
     'ts/no-confusing-void-expression': 'off',
-    'ts/only-throw-error': ['error', { allow: ['NotFoundError'] }],
+    'ts/only-throw-error': ['error', { allow: ['DataWithResponseInit'] }],
   },
 }).override('silvecor/typescript/style', {
   rules: {
@@ -28,12 +27,5 @@ export default silvecor({
 }).override('silvecor/react', {
   rules: {
     'react/exhaustive-deps': ['warn'],
-  },
-}).append({
-  plugins: {
-    '@tanstack/router': pluginRouter,
-  },
-  rules: {
-    '@tanstack/router/create-route-property-order': 'error',
   },
 });

@@ -1,17 +1,18 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { getProjects } from '@/lib/posts';
-import s from './index.module.css';
+import type { Route } from './+types/projects';
+import { Metadata } from 'src/components/metadata';
+import s from '@/layouts/projects.module.css';
+import { getProjects } from '@/lib/posts.server';
 
-export const Route = createFileRoute('/projects/')({
-  component: RouteComponent,
-  loader: () => getProjects(),
-});
+export async function loader() {
+  return getProjects();
+}
 
-function RouteComponent() {
-  const projects = Route.useLoaderData();
+export default function Projects({ loaderData }: Route.ComponentProps) {
+  const projects = loaderData;
 
   return (
     <div className={s.projects}>
+      <Metadata title='Projects' slugs={['projects']} />
       <h2 className={s.heading}>Projects</h2>
       <ul className={s.container}>
         {projects.map(item => (

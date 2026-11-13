@@ -1,6 +1,6 @@
 '$schema' = './node_modules/wrangler/config-schema.json'
 name = 'silvecor-dev'
-main = '@tanstack/react-start/server-entry'
+main = './workers/app.ts'
 compatibility_date = '2026-11-12'
 compatibility_flags = [ 'nodejs_compat' ]
 
@@ -14,4 +14,5 @@ html_handling = 'drop-trailing-slash'
 [observability]
 enabled = true
 
-[vars]
+[placement]
+mode = "smart"

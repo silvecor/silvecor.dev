@@ -1,37 +1,27 @@
+import type { Route } from './+types/posts.$id';
 import { Collapsible, Progress } from '@ark-ui/react';
-import { createFileRoute, notFound } from '@tanstack/react-router';
 import clsx from 'clsx';
 import { clamp, round, throttle } from 'es-toolkit';
 import { useEffect, useRef, useState } from 'react';
+import { data } from 'react-router';
 import CaretRight from '~icons/ph/caret-right';
 import Copyright from '~icons/ph/copyright';
+import { Metadata } from '@/components/metadata';
 import { TextLink } from '@/components/text-link';
+import s from '@/layouts/posts.$id.module.css';
 import { formatDate } from '@/lib/date';
-import { metadata } from '@/lib/metadata';
-import { getPostContent } from '@/lib/post-content';
-import { getPosts } from '@/lib/posts';
-import s from './$.module.css';
+import { getPostContent, getPosts } from '@/lib/posts.server';
 
-export const Route = createFileRoute('/posts/$')({
-  component: PostsComponent,
-  loader: async ({ params }) => {
-    const post = getPosts().find(i => i.slug === params._splat);
-    if (!post) throw notFound();
-    return { ...post, ...(await getPostContent(params._splat!)) };
-  },
-  head: ({ loaderData: post }) => post ? metadata({
-    isArticle: true,
-    slugs: ['posts', post!.slug!],
-    image: post!.banner?.dark?.src,
-    ...post,
-  }) : {},
-  preload: false,
-});
+export async function loader({ params }: Route.LoaderArgs) {
+  const post = getPosts().find(i => i.slug === params.id);
+  if (!post) throw data({}, 404);
+  return { ...post, ...(await getPostContent(params.id)!)! };
+}
 
 const TOC_EPS = 20;
 
-function PostsComponent() {
-  const post = Route.useLoaderData();
+export default function Post({ loaderData }: Route.ComponentProps) {
+  const post = loaderData;
 
   const [progress, setProgress] = useState<number>(0);
   const [heading, setHeading] = useState<string>(post.content.toc[0]?.label ?? '');
@@ -105,6 +95,7 @@ function PostsComponent() {
 
   return (
     <>
+      <Metadata isArticle {...post} image={post.banner?.dark?.src} slugs={['posts', post.slug!]} />
       <section className={s.titleContainer}>
         <div className={s.titleContent}>
           <p className={s.tags}>
@@ -117,13 +108,13 @@ function PostsComponent() {
         </div>
         <p className={s.meta}>
           <span className={s.head}>META</span>
-          <div className={s.separator} />
+          <span className={s.separator} />
           <time dateTime={post.date}>{formatDate(post.date)}</time>
           <span>{post.meta.readingTime} min</span>
         </p>
         <p className={s.description}>
           <span className={s.head}>DESC</span>
-          <div className={s.separator} />
+          <span className={s.separator} />
           <span>{post.description}</span>
         </p>
       </section>

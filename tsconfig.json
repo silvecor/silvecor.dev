@@ -9,14 +9,18 @@
       "DOM.Iterable"
     ],
     "moduleDetection": "force",
+    "rootDirs": [".", "./.react-router/types"],
     "module": "ESNext",
     "moduleResolution": "bundler",
     "paths": {
+      "*": [
+        "./*"
+      ],
       "@/*": [
         "./src/*"
       ],
-      "collections": [
-        "./.velite"
+      "collections/*": [
+        "./.velite/*"
       ]
     },
     "resolveJsonModule": true,
@@ -40,8 +44,10 @@
     "skipLibCheck": true
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx"
+    "**/*",
+    "**/.server/**/*",
+    "**/.client/**/*",
+    ".react-router/types/**/*"
   ],
   "exclude": [
     "dist",

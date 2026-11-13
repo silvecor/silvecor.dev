@@ -1,20 +1,20 @@
-import { createFileRoute } from '@tanstack/react-router';
+import type { Route } from './+types/posts._index';
 import { Fragment } from 'react';
+import { Metadata } from '@/components/metadata';
 import { Post } from '@/components/post';
-import { getSortedPosts } from '@/lib/posts';
-import s from './index.module.css';
+import s from '@/layouts/posts._index.module.css';
+import { getSortedPosts } from '@/lib/posts.server';
 
-export const Route = createFileRoute('/posts/')({
-  component: RouteComponent,
-  loader: () => getSortedPosts(),
-});
+export async function loader() {
+  return getSortedPosts();
+}
 
 function getYear(date: string) {
   return new Date(date).getFullYear();
 }
 
-function RouteComponent() {
-  const posts = Route.useLoaderData();
+export default function Posts({ loaderData }: Route.ComponentProps) {
+  const posts = loaderData;
 
   const yearIndex: Record<number, number> = {};
   for (let i = 0; i < posts.length; ++i) {
@@ -26,6 +26,7 @@ function RouteComponent() {
 
   return (
     <div className={s.posts}>
+      <Metadata title='Posts' slugs={['posts']} />
       <h2 className={s.postsHeading}>Posts</h2>
       <ul className={s.postsContainer}>
         {posts.map((post, i) => (

@@ -1,8 +1,6 @@
 import { execSync } from 'node:child_process';
 import { cloudflare } from '@cloudflare/vite-plugin';
-import { velite } from '@silvecor/vite-plugin-velite';
-import { tanstackStart } from '@tanstack/react-start/plugin/vite';
-import react from '@vitejs/plugin-react';
+import { reactRouter } from '@react-router/dev/vite';
 import icons from 'unplugin-icons/vite';
 import { defineConfig } from 'vite';
 
@@ -30,21 +28,11 @@ export default defineConfig({
     tsconfigPaths: true,
   },
   plugins: [
-    velite(),
     cloudflare({
       viteEnvironment: { name: 'ssr' },
     }),
-    tanstackStart({
-      prerender: {
-        enabled: true,
-        crawlLinks: true,
-      },
-      sitemap: {
-        enabled: true,
-        host: 'https://silvecor.dev',
-      },
-    }),
-    react({ compiler: true }),
+    reactRouter(),
+    // react({ compiler: true }),
     icons({
       compiler: 'jsx',
       jsx: 'react',

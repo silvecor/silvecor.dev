@@ -1,6 +1,6 @@
-import { Link } from '@tanstack/react-router';
 import clsx from 'clsx';
 import { Fragment } from 'react';
+import { Link } from 'react-router';
 import Book from '~icons/ph/book';
 import CardsThree from '~icons/ph/cards-three';
 import s from './nav.module.css';

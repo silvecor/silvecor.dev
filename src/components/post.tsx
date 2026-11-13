@@ -1,5 +1,5 @@
-import type { posts } from 'collections';
-import { Link } from '@tanstack/react-router';
+import type { posts } from 'collections/index';
+import { Link } from 'react-router';
 import ArrowUpRight from '~icons/ph/arrow-up-right';
 import { formatDate } from '@/lib/date';
 import s from './post.module.css';
@@ -15,7 +15,7 @@ function sanitizeImage({ src, width, height }: NonNullable<NonNullable<posts['ba
 export function Post({ post }: { post: posts }) {
   return (
     <li>
-      <Link className={s.container} to='/posts/$' params={{ _splat: post.slug }}>
+      <Link className={s.container} to={`/posts/${post.slug}`}>
         <div className={s.banner} aria-hidden>
           {post.banner?.light && <img className={s.lightImage} alt='light banner' data-theme-light {...sanitizeImage(post.banner.light)} />}
           {post.banner?.dark && <img className={s.darkImage} alt='dark banner' data-theme-dark {...sanitizeImage(post.banner.dark)} />}

@@ -18,8 +18,8 @@ const posts = defineCollection({
     slug: s.path().transform(path => path.split('/').pop()),
     meta: s.metadata(),
   }).transform(async ({ content, ...rest }) => {
-    await mkdir('public/content/posts', { recursive: true });
-    await writeFile(`public/content/posts/${rest.slug}.json`, JSON.stringify({ content }), { flag: 'w' });
+    await mkdir('.velite/posts', { recursive: true });
+    await writeFile(`.velite/posts/${rest.slug}.json`, JSON.stringify({ content }), { flag: 'w' });
     return rest;
   }),
 });

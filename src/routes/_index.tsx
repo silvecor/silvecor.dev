@@ -1,15 +1,16 @@
-import { createFileRoute, Link } from '@tanstack/react-router';
+import type { Route } from './+types/_index';
 import { Fragment } from 'react';
+import { Link } from 'react-router';
 import ArrowUpRight from '~icons/ph/arrow-up-right';
 import Binary from '~icons/ph/binary';
 import Email from '~icons/ph/envelope-simple';
 import GitHub from '~icons/ph/github-logo';
 import Earth from '~icons/ph/globe-hemisphere-east-duotone';
 import Twitter from '~icons/ph/twitter-logo';
+import { Metadata } from '@/components/metadata';
 import { Post } from '@/components/post';
-import { metadata } from '@/lib/metadata';
-import { getRecentPosts } from '@/lib/posts';
-import s from './index.module.css';
+import s from '@/layouts/_index.module.css';
+import { getRecentPosts } from '@/lib/posts.server';
 
 const actions = [
   { label: 'email', icon: Email, href: 'mailto:me@silvecor.dev' },
@@ -18,19 +19,16 @@ const actions = [
   { label: 'knowledge base', icon: Binary, href: 'https://kb.silvecor.dev' },
 ];
 
-export const Route = createFileRoute('/')({
-  loader: () => {
-    return getRecentPosts();
-  },
-  component: HomeComponent,
-  head: () => metadata({ title: 'Home' }),
-});
+export async function loader() {
+  return getRecentPosts();
+}
 
-function HomeComponent() {
-  const recentPosts = Route.useLoaderData();
+export default function Home({ loaderData }: Route.ComponentProps) {
+  const recentPosts = loaderData;
 
   return (
     <div className={s.container}>
+      <Metadata title='Home' />
       <section className={s.hero}>
         <div className={s.intro}>
           <h1 className={s.name}>Silver Chloride</h1>
